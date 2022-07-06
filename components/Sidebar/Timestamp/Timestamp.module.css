@@ -1,0 +1,11 @@
+.container {
+	@apply w-full flex flex-col
+}
+
+.title {
+	@apply text-xs font-semibold text-white
+}
+
+.timestamp {
+	@apply text-base text-white
+}

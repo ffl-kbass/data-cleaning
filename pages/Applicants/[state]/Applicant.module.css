@@ -1,0 +1,7 @@
+.container {
+	@apply h-full w-full flex-1 flex flex-row gap-4 overflow-hidden
+}
+
+.divider {
+	@apply h-full border-l-2  border-dotted
+}

@@ -1,0 +1,17 @@
+.container {
+	@apply transition-all opacity-40 p-2 flex flex-row flex-wrap gap-2 justify-center max-w-lg bg-slate-700 border border-slate-900 text-white rounded-lg shadow
+}
+
+.container:hover {
+	@apply pointer-events-auto opacity-100
+}
+
+.container a,
+.container button {
+	@apply whitespace-nowrap px-2 h-10 rounded-lg font-semibold text-sm
+}
+
+.container a:hover,
+.container button:hover {
+	@apply bg-slate-800
+}

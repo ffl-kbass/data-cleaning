@@ -1,0 +1,19 @@
+.container {
+    @apply h-full w-full flex flex-col flex-nowrap bg-white border border-slate-200 rounded-xl p-3
+}
+
+.title {
+    @apply w-full pb-2
+}
+
+.title h4 {
+    @apply font-bold text-slate-900 text-xs truncate
+}
+
+.stats {
+    @apply w-full h-full flex items-center
+}
+
+.container * {
+    @apply truncate
+}

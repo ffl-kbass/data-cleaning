@@ -1,0 +1,80 @@
+.sidebar {
+	@apply
+	w-64
+	h-full
+	flex
+	flex-col
+	bg-slate-100
+	border-r
+	border-slate-300
+	p-4
+	flex-none
+}
+
+.sidebar .logo {
+	@apply w-full
+	p-4
+	mb-4
+	flex
+	flex-row
+	text-white
+	bg-blue-500
+	rounded-xl
+}
+
+.sidebar ul {
+	@apply
+	w-full
+	flex-1
+	font-semibold
+	flex
+	flex-col
+}
+
+.sidebar ul .item {
+	@apply w-full
+	rounded-lg
+	h-10
+	inline-flex
+	items-center
+	justify-start
+	text-slate-600;
+
+	transition: all .12s;
+}
+
+.sidebar ul .item button,
+.sidebar ul .item a {
+	@apply w-full 
+	h-full
+	px-4
+	inline-flex
+	items-center
+	justify-start
+	cursor-pointer
+	truncate
+}
+
+.sidebar ul .item:hover {
+	@apply bg-slate-200
+}
+
+.countdown {
+	@apply w-full
+	p-4
+	mb-4
+	flex
+	flex-col
+	text-slate-900
+	bg-slate-200
+	rounded-xl
+}
+
+.countdown .title {
+	@apply font-bold
+	text-xl
+}
+
+.countdown .sub {
+	@apply text-xs
+}

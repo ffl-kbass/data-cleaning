@@ -1,0 +1,5 @@
+.content {
+	@apply p-4 md:p-8 lg:p-12
+	overflow-hidden relative
+	w-full  h-full z-20 bg-white
+}

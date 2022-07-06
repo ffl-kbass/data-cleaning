@@ -1,0 +1,19 @@
+.container {
+    @apply inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-bold bg-slate-200 text-slate-900
+}
+
+.success {
+    @apply bg-green-500 text-white
+}
+
+.warning {
+    @apply bg-yellow-500 text-white
+}
+
+.emergency {
+    @apply bg-red-500 text-white
+}
+
+.large {
+    @apply text-sm py-0.5 px-2
+}
