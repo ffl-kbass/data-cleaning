@@ -5,6 +5,7 @@ import Table from '../Table'
 import card from '../Card/Card.module.css'
 import { useEffect, useRef, useState } from 'react'
 import Dropdown from '../Dropdown'
+import styles from "./Applicant.module.css"
 
 const ApplicantView = ({ year, scroll, scrollPos, scrollSync, checked = null, primary = false }) =>
 {
@@ -38,6 +39,8 @@ const ApplicantView = ({ year, scroll, scrollPos, scrollSync, checked = null, pr
 	const app = useRef(null)
 	const router = useRouter()
 	const [currentYear,setYear] = useState(year)
+	const [editClosed, setEditClosed] = useState(true)
+	const [editOpen, setEditOpen] = useState(true)
 
 	useEffect(() =>
 	{
@@ -149,16 +152,26 @@ const ApplicantView = ({ year, scroll, scrollPos, scrollSync, checked = null, pr
 					<Card className="flex-1 flex flex-col gap-2 max-w-md min-w-[16rem]">
 						<h2 className={card.title}>Data Quality Indicators</h2>
 						<ul className='text-sm'>
-							<li className='flex flex-row justify-between'>
+							<li className={styles.title}>
 								<p className='font-bold'>Open Issues Found:</p>
+								<button onClick={() => setEditOpen(!editOpen)} className={styles.edit}>
+									<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+									</svg>
+								</button>
 							</li>
-							<li><Indicator cleared={false}>Outlier: Bandwidth/Student</Indicator></li>
+							<li><Indicator cleared={false} edit={editOpen}>Outlier: Bandwidth/Student</Indicator></li>
 						</ul>
 						<ul className='text-sm'>
-							<li className='flex flex-row justify-between'>
+							<li className={styles.title}>
 								<p className='font-bold'>Resolved Issues:</p>
+								<button onClick={() => setEditClosed(!editClosed)} className={styles.edit}>
+									<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+										<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+									</svg>
+								</button>
 							</li>
-							<li><Indicator cleared={true}>Missing Internet Transport</Indicator></li>
+							<li><Indicator cleared={true} edit={editClosed}>Missing Internet Transport</Indicator></li>
 						</ul>
 					</Card>
 				</div>

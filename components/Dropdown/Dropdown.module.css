@@ -19,7 +19,7 @@
 }
 
 .dropdown .element {
-	@apply h-10 w-full px-4 bg-transparent text-gray-900 font-semibold inline-flex flex-row gap-2 items-center justify-start rounded-lg cursor-pointer
+	@apply h-10 w-full px-4 bg-transparent text-slate-900 font-semibold inline-flex flex-row gap-2 items-center justify-start rounded-lg cursor-pointer
 }
 
 .item {

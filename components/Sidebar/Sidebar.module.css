@@ -14,11 +14,9 @@
 .sidebar .logo {
 	@apply w-full
 	p-4
-	mb-4
 	flex
 	flex-row
-	text-white
-	bg-blue-500
+  text-blue-500
 	rounded-xl
 }
 

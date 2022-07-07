@@ -1,0 +1,19 @@
+.container {
+    @apply flex flex-row gap-2 items-center justify-start py-1
+}
+
+.container svg {
+    @apply flex-none
+}
+
+.container p {
+    @apply truncate py-1
+}
+
+.edit {
+    @apply p-1 rounded-xl flex-none text-green-500
+}
+
+.edit:hover {
+    @apply bg-green-100
+}

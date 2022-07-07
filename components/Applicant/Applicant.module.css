@@ -1,0 +1,19 @@
+.title {
+    @apply flex flex-row gap-2 items-center justify-start py-1
+}
+
+.title p {
+    @apply truncate py-1 w-full
+}
+
+.title:hover .edit {
+    @apply block
+}
+
+.edit {
+    @apply p-1 rounded-xl hidden
+}
+
+.edit:hover {
+    @apply bg-slate-100
+}
