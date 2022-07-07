@@ -48,7 +48,8 @@ const Applicant = () =>
 			</div>
 			<div className='flex flex-col h-full w-full overflow-hidden'>
 				<Title>
-					{router.query.district && router.query.district[0]}
+					Arvon Township School District
+					{/* {router.query.district && router.query.district[0]} */}
 				</Title>
 				<div className={styles.container}>
 					<ApplicantView primary={true} year={2022} scrollSync={toggle} scroll={setScroll} scrollPos={scroll} checked={handleCheckboxChange}/>

@@ -1,5 +1,17 @@
 .container {
-    @apply h-full w-full flex flex-col flex-nowrap bg-white border border-slate-200 rounded-xl p-3
+    @apply h-full 
+    w-full 
+    flex 
+    flex-col 
+    flex-nowrap 
+    /* bg-gradient-to-b
+    from-blue-100
+    to-transparent */
+    bg-white
+    border 
+    border-slate-200 
+    rounded-xl 
+    p-3
 }
 
 .title {
