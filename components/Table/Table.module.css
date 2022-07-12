@@ -1,5 +1,5 @@
 .container {
-	@apply overflow-hidden border border-slate-200 w-full bg-white rounded-lg
+	@apply overflow-hidden border border-slate-200 w-full bg-white rounded-md dark:bg-slate-800 dark:border-slate-700
 }
 
 .sub {
@@ -15,24 +15,24 @@
 }
 
 .sub table tr {
-	@apply  bg-white h-10 
+	@apply  bg-white h-10 dark:bg-slate-800
 }
 
 .sub table tr td:not(:last-child), 
 .sub table tr th:not(:last-child) {
-	@apply border-r border-slate-200
+	@apply border-r border-slate-200 dark:border-slate-700
 }
 
 .sub table thead tr {
-	@apply border-b border-slate-200
+	@apply border-b border-slate-200 dark:border-slate-700
 }
 
 .sub table tbody tr:not(:last-child) {
-	@apply border-b border-slate-200
+	@apply border-b border-slate-200 dark:border-slate-700
 }
 
 .sub table tbody tr:hover {
-	@apply bg-blue-50
+	@apply bg-blue-50 dark:bg-blue-900
 }
 
 .sub table th,
@@ -45,15 +45,15 @@
 } */
 
 .sub table th {
-	@apply font-bold text-slate-600 text-xs
+	@apply font-bold text-slate-500 text-xs dark:text-slate-50
 }
 
 .sub table td {
-	@apply text-base
+	@apply text-base dark:text-slate-50
 }
 
 .sub table a {
-	@apply text-blue-500
+	@apply text-blue-600 dark:text-blue-400
 }
 
 /* .sub table tr.success,
@@ -88,7 +88,7 @@
 }
 
 .timestamp_container .marker {
-	@apply relative z-30 w-1.5 h-full bg-blue-500 rounded-lg flex-none cursor-pointer
+	@apply relative z-30 w-1.5 h-full bg-blue-600 rounded-md flex-none cursor-pointer
 }
 
 .timestamp_container .timestamp .marker:hover + span {
@@ -96,15 +96,15 @@
 }
 
 .timestamp_container .timestamp span {
-	@apply w-[4rem] relative translate-x-[6rem] transition-all
+	@apply w-[4rem] relative translate-x-[6rem]
 }
 
 .timestamp_container .timestamp .title {
-	@apply text-[.6rem] font-semibold text-slate-600
+	@apply text-[.6rem] font-semibold text-slate-500 dark:text-slate-50
 }
 
 .timestamp_container .timestamp .text {
-	@apply text-[.7rem] text-slate-600 truncate
+	@apply text-[.7rem] text-slate-500 truncate dark:text-slate-50
 }
 
 .modifiers {
@@ -132,26 +132,31 @@
 	top-1/2
 	-translate-y-1/2
 	left-2.5
-	text-slate-600
+	text-slate-500
 	bg-white
+	dark:text-slate-100
+	dark:bg-slate-800
 }
 
 .modifiers .input input[type="text"] {
 	@apply
-	rounded-lg
+	rounded-md
 	h-10
 	pl-10
 	pr-4
 	truncate
 	border
 	border-slate-200
-	bg-slate-50
+	bg-white
+	dark:text-slate-100
+	dark:bg-slate-800
+	dark:border-slate-700
 }
 
 .link {
-	@apply text-blue-500 cursor-pointer p-0.5 px-2
+	@apply text-blue-600 cursor-pointer p-0.5 px-2
 }
 
 .link:hover {
-	@apply rounded-full bg-blue-500/10
+	@apply rounded-full bg-blue-600/10
 }

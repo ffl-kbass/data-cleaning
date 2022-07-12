@@ -4,11 +4,13 @@
 	h-full
 	flex
 	flex-col
-	bg-slate-100
+	bg-slate-50
 	border-r
-	border-slate-300
+	border-slate-200
 	p-4
 	flex-none
+	dark:bg-slate-900
+	dark:border-slate-800
 }
 
 .sidebar .logo {
@@ -16,8 +18,9 @@
 	p-4
 	flex
 	flex-row
-  text-blue-500
-	rounded-xl
+  text-blue-600
+  dark:text-slate-50
+	rounded-md
 }
 
 .sidebar ul {
@@ -31,14 +34,12 @@
 
 .sidebar ul .item {
 	@apply w-full
-	rounded-lg
+	rounded-md
 	h-10
 	inline-flex
 	items-center
 	justify-start
-	text-slate-600;
-
-	transition: all .12s;
+	text-slate-500;
 }
 
 .sidebar ul .item button,
@@ -54,7 +55,7 @@
 }
 
 .sidebar ul .item:hover {
-	@apply bg-slate-200
+	@apply bg-blue-300/10 text-blue-600 dark:text-blue-50
 }
 
 .countdown {
@@ -64,8 +65,13 @@
 	flex
 	flex-col
 	text-slate-900
-	bg-slate-200
-	rounded-xl
+	bg-white
+	border
+	border-slate-200
+	rounded-md
+	dark:bg-slate-800
+	dark:text-slate-50
+	dark:border-slate-700
 }
 
 .countdown .title {

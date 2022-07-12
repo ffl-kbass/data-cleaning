@@ -77,13 +77,13 @@ const ApplicantView = ({ year, scroll, scrollPos, scrollSync, checked = null, pr
 	}
 
 	return (
-		<div ref={app} className={`w-full h-full flex-1 overflow-x-hidden overflow-y-auto p-4 rounded-lg ${primary && 'bg-slate-50 border-2 border-blue-500'}`}>
+		<div ref={app} className={`w-full h-full flex-1 overflow-x-hidden overflow-y-auto p-4 rounded-md dark:text-slate-50 ${primary && 'bg-blue-600/10 border border-blue-500'}`}>
 			<div className='inline-flex flex-row items-center gap-1 mb-6'>
 				{/* <p className='text-xs'>Funding Year</p> */}
 				{!primary ?
 				<Dropdown title={
 					<>
-						<h4 className='text-xl font-bold text-left inline-flex flex-row gap-2 items-center justify-center text-slate-900'>
+						<h4 className='text-xl font-bold text-left inline-flex flex-row gap-2 items-center justify-center'>
 							{currentYear}
 							<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
 								<path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -92,10 +92,10 @@ const ApplicantView = ({ year, scroll, scrollPos, scrollSync, checked = null, pr
 					</>
 				}>
 					{getYears().map((year, index) => {
-						return <button onClick={() => setYear(year)} className='p-2 rounded-lg' key={index}>{year}</button>
+						return <button onClick={() => setYear(year)} className='p-2 rounded-md' key={index}>{year}</button>
 					})}
 				</Dropdown>
-				: <h4 className='text-3xl font-bold text-blue-500'>{year}</h4>
+				: <h4 className='text-3xl font-bold text-blue-600'>{year}</h4>
 				}
 			</div>
 			<div className='flex flex-col gap-8'>

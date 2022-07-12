@@ -10,8 +10,11 @@
     bg-white
     border 
     border-slate-200 
-    rounded-xl 
+    rounded-md 
     p-3
+    dark:bg-slate-800
+    dark:border-slate-700
+    dark:text-slate-50
 }
 
 .title {
@@ -19,7 +22,7 @@
 }
 
 .title h4 {
-    @apply font-bold text-slate-900 text-xs truncate
+    @apply font-bold text-slate-900 text-xs truncate dark:text-slate-50
 }
 
 .stats {

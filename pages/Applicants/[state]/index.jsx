@@ -61,8 +61,8 @@ const Applicants = () =>
 				</Stats>
 				<Stats title="Issues">
 					<div className="flex-1 flex flex-col gap-2 h-full">
-						<p className="font-bold text-lg flex-1 flex items-center px-4 rounded-lg bg-red-500 text-white">200 DQIs Remaining</p>
-						<p className="font-bold text-lg flex-1 flex items-center px-4 rounded-lg bg-red-500 text-white">200 Outliers Remaining</p>
+						<p className="font-bold text-lg flex-1 flex items-center px-4 rounded-md bg-red-500 text-white">200 DQIs Remaining</p>
+						<p className="font-bold text-lg flex-1 flex items-center px-4 rounded-md bg-red-500 text-white">200 Outliers Remaining</p>
 					</div>
 				</Stats>
 			</div>

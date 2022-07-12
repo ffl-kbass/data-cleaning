@@ -1,8 +1,8 @@
 import styles from "./Home.module.css"
 
-const Layout = ({children}) => {
+const Layout = ({children, darkMode}) => {
 	return (
-		<section className={styles.layout}>
+		<section className={`${styles.layout} ${darkMode ? 'dark' : ''}`}>
 			{children}
 		</section>
 	)

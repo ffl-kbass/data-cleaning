@@ -56,7 +56,7 @@ const Applicant = () =>
 					<ApplicantView year={router.query.district && router.query.district[1] ? router.query.district[1] : new Date().getFullYear() - 1} scrollSync={toggle}  scroll={setScroll} scrollPos={scroll} />
 				</div>
 				<div className='w-full pt-2'>
-					<button onClick={() => setToggle(!toggle)} className={`h-6 px-1.5 rounded-md font-semibold text-xs ${toggle ? `bg-blue-500 text-white` : `text-slate-600 bg-slate-200`}`}>{toggle ? 'Disable Scroll Sync' : 'Enable Scroll Sync'}</button>
+					<button onClick={() => setToggle(!toggle)} className={`h-6 px-1.5 rounded-md font-semibold text-xs ${toggle ? `bg-blue-600 text-white` : `text-slate-500 bg-slate-200`}`}>{toggle ? 'Disable Scroll Sync' : 'Enable Scroll Sync'}</button>
 				</div>
 			</div>
 		</>

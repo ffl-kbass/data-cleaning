@@ -2,6 +2,7 @@ import Dropdown from "../Dropdown"
 import styles from "./Table.module.css"
 import drop from "../Dropdown/Dropdown.module.css"
 import Assignees from "../../components/Assignees"
+import Badge from "../../components/Badge"
 import React, { useEffect, useRef, useState } from "react"
 import { useRouter } from 'next/router'
 
@@ -63,27 +64,35 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 						</>
 					}>
 						<button className={drop.element}>
-							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 p-.5 rounded-full bg-blue-100 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-								<path strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
-							</svg>
+							<Badge shape="round">
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+									<path strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+								</svg>
+							</Badge>
 							Districts Clean %
 						</button>
 						<button className={drop.element}>
-							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 p-.5 rounded-full bg-blue-100 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-								<path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-							</svg>
+							<Badge shape="round">
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+									<path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+								</svg>
+							</Badge>
 							Districts Clean %
 						</button>
 						<button className={drop.element}>
-							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 p-.5 rounded-full bg-blue-100 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-								<path strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
-							</svg>
+							<Badge shape="round">
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+									<path strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
+								</svg>
+							</Badge>
 							State Name
 						</button>
 						<button className={drop.element}>
-							<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 p-.5 rounded-full bg-blue-100 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-								<path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-							</svg>
+							<Badge shape="round">
+								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+									<path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
+								</svg>
+							</Badge>
 							State Name
 						</button>
 					</Dropdown>}
@@ -96,45 +105,49 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 							Filter
 						</>
 					}>
-						<div className="flex flex-row flex-wrap gap-4 p-2">
-							<div className="flex flex-col gap-2">
-								<div>
-									<p className="font-bold text-slate-600 text-xs truncate pb-1 pl-1">Applicant BEN/Name</p>
-									<input className="py-1 px-2 rounded-lg border border-slate-200 bg-slate-50 truncate" />
+						<div className="flex flex-col gap-8 p-2">
+							<div className="flex flex-row gap-6">
+								<div className="flex flex-col gap-2">
+									<div>
+										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant BEN/Name</p>
+										<input className="py-1 px-2 rounded-md border border-slate-200 bg-slate-50 truncate dark:bg-slate-900 dark:border-slate-700" />
+									</div>
+									<div>
+										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">State</p>
+										<input className="py-1 px-2 rounded-md border border-slate-200 bg-slate-50 truncate dark:bg-slate-900 dark:border-slate-700" />
+									</div>
+									<div>
+										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant Address</p>
+										<input className="py-1 px-2 rounded-md border border-slate-200 bg-slate-50 truncate dark:bg-slate-900 dark:border-slate-700" />
+									</div>
 								</div>
-								<div>
-									<p className="font-bold text-slate-600 text-xs truncate pb-1 pl-1">State</p>
-									<input className="py-1 px-2 rounded-lg border border-slate-200 bg-slate-50 truncate" />
-								</div>
-								<div>
-									<p className="font-bold text-slate-600 text-xs truncate pb-1 pl-1">Applicant Address</p>
-									<input className="py-1 px-2 rounded-lg border border-slate-200 bg-slate-50 truncate" />
-								</div>
-								<div className="flex flex-col text-sm">
-									<p className="font-bold text-slate-600 text-xs truncate pb-1 pl-1">Applicant Type</p>
-									<label className="inline-flex gap-2">
-										<input type="radio" />
-										Districts
-									</label>
-									<label className="inline-flex gap-2">
-										<input type="radio" />
-										Other
-									</label>
-								</div>
-								<div className="flex flex-col text-sm">
-									<p className="font-bold text-slate-600 text-xs truncate pb-1 pl-1">Applicant Type</p>
-									<label className="inline-flex gap-2">
-										<input type="radio" />
-										No DQI Filter
-									</label>
-									<label className="inline-flex gap-2">
-										<input type="radio" />
-										Filter Open DQIs
-									</label>
+								<div className="flex flex-col gap-4">
+									<div className="flex flex-col">
+										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant Type</p>
+										<label className="inline-flex gap-2">
+											<input type="radio" />
+											Districts
+										</label>
+										<label className="inline-flex gap-2">
+											<input type="radio" />
+											Other
+										</label>
+									</div>
+									<div className="flex flex-col">
+										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant Type</p>
+										<label className="inline-flex gap-2">
+											<input type="radio" />
+											No DQI Filter
+										</label>
+										<label className="inline-flex gap-2">
+											<input type="radio" />
+											Filter Open DQIs
+										</label>
+									</div>
 								</div>
 							</div>
 							<div className="flex flex-row flex-wrap gap-4">
-								<div className="flex flex-col">
+								<div className="flex flex-col gap-2">
 									<label className="inline-flex gap-2 font-bold">
 										<input type="checkbox" />
 										District Issues
@@ -174,7 +187,7 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 										</label>
 									</div>
 								</div>
-								<div className="flex flex-col">
+								<div className="flex flex-col gap-2">
 									<label className="inline-flex gap-2 font-bold">
 										<input type="checkbox" />
 										Outlier Issues
@@ -230,6 +243,7 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 							</div>
 							<input type="text" placeholder="Search..." />
 						</div>
+						<div  className="p-1"/>
 						<label className={drop.element}>
 							<input type="checkbox" className="hidden" />
 							<Assignees names={[{first: "Kenny",last: "Bass"}]}/>

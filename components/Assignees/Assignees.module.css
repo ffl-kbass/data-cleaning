@@ -16,6 +16,9 @@
 	border-white
 	text-xs
 	cursor-pointer
+	dark:border-slate-800
+	dark:text-blue-50
+	dark:bg-blue-500
 }
 
 .assignee:not(:first-child) {

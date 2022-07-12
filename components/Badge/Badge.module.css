@@ -1,17 +1,21 @@
 .container {
-    @apply inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-bold bg-slate-200 text-slate-900
+    @apply inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-bold bg-blue-100 text-blue-500 dark:bg-blue-500 dark:text-white
+}
+
+.round {
+    @apply p-0.5
 }
 
 .success {
-    @apply bg-green-500 text-white
+    @apply bg-green-100 text-green-500 dark:text-white dark:bg-green-500
 }
 
 .warning {
-    @apply bg-yellow-500 text-white
+    @apply bg-yellow-100 text-yellow-500 dark:text-white dark:bg-yellow-500
 }
 
 .emergency {
-    @apply bg-red-500 text-white
+    @apply bg-red-100 text-red-500 dark:text-white dark:bg-red-500
 }
 
 .large {
