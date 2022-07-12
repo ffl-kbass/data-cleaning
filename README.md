@@ -1,3 +1,5 @@
+Data Cleaning dashboard. Used for cleaning district level data representing data connections.
+
 # After Forking
 
  1. npm i *(This will install all dependencies)*
