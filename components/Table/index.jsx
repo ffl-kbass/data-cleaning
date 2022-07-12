@@ -5,6 +5,7 @@ import Assignees from "../../components/Assignees"
 import Badge from "../../components/Badge"
 import React, { useEffect, useRef, useState } from "react"
 import { useRouter } from 'next/router'
+import Filter from "../Filter/State"
 
 const Table = ({head, body, search = true, sort = true, filter = true, assignees = true, timestamp = true}) => {
 	const primary = useRef(null)
@@ -12,7 +13,36 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 
 	const [mainSearch, setMainSearch] = useState("")
 	const [filterSearch, setFilterSearch] = useState("")
-	const [tableFilter, setTableFilter] = useState([])
+	const [tableFilter, setTableFilter] = useState({
+		applicant_type: {
+			districts: false,
+		},
+		filter_dqis: {
+			no_dqi_filter: false,
+		},
+		district_issues: {
+			missing_allocation: false,
+			district_issues: false,
+			missing_allocation: false,
+			abnormal_allocations_source: false,
+			dirty_services: false,
+			missing_bandwidth_transport: false,
+			missing_bandwidth: false,
+			extra_internet: false,
+			missing_internet_transport: false,
+			veto: false,
+		},
+		outlier_issues: {
+			outlier_issues: false,
+			change_in_bandwidth: false,
+			change_in_cost_mbps: false,
+			cost_mbps: false,
+			bandwidth_student: false,
+			change_num_students: false,
+			not_meeting_connectivity_rule: false,
+			increase_cost_per_mbps_rule: false
+		}
+	})
 
 	useEffect(() => {
 		if(timestamp){
@@ -28,18 +58,15 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 		}
 	},[])
 
-	const handleCheckboxChange = (event) =>
-	{
-		if (event.target.checked)
-		{
-			if (!tableFilter.includes(event.target.value))
-			{
-				setTableFilter(prev => [...prev, event.target.value])
-			}
-		} else
-		{
-			setTableFilter(tableFilter.filter(element => element != event.target.value));
-		}
+	useEffect(() => {
+		console.log(tableFilter)
+	},[tableFilter])
+
+	const onChange = (section,e) => {
+		const items = {...tableFilter};
+		items[section][e.target.value] = e.target.checked;
+
+		setTableFilter(items);
 	}
 	
 	return (
@@ -97,135 +124,7 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 						</button>
 					</Dropdown>}
 				{filter &&
-					<Dropdown title={
-						<>
-							<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-								<path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-							</svg>
-							Filter
-						</>
-					}>
-						<div className="flex flex-col gap-8 p-2">
-							<div className="flex flex-row gap-6">
-								<div className="flex flex-col gap-2">
-									<div>
-										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant BEN/Name</p>
-										<input className="py-1 px-2 rounded-md border border-slate-200 bg-slate-50 truncate dark:bg-slate-900 dark:border-slate-700" />
-									</div>
-									<div>
-										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">State</p>
-										<input className="py-1 px-2 rounded-md border border-slate-200 bg-slate-50 truncate dark:bg-slate-900 dark:border-slate-700" />
-									</div>
-									<div>
-										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant Address</p>
-										<input className="py-1 px-2 rounded-md border border-slate-200 bg-slate-50 truncate dark:bg-slate-900 dark:border-slate-700" />
-									</div>
-								</div>
-								<div className="flex flex-col gap-4">
-									<div className="flex flex-col">
-										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant Type</p>
-										<label className="inline-flex gap-2">
-											<input type="radio" />
-											Districts
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="radio" />
-											Other
-										</label>
-									</div>
-									<div className="flex flex-col">
-										<p className="font-bold text-slate-500 text-xs truncate pb-1 pl-1 dark:text-slate-50">Applicant Type</p>
-										<label className="inline-flex gap-2">
-											<input type="radio" />
-											No DQI Filter
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="radio" />
-											Filter Open DQIs
-										</label>
-									</div>
-								</div>
-							</div>
-							<div className="flex flex-row flex-wrap gap-4">
-								<div className="flex flex-col gap-2">
-									<label className="inline-flex gap-2 font-bold">
-										<input type="checkbox" />
-										District Issues
-									</label>
-									<div className="flex flex-col gap-1 pl-4 text-sm">
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Missing Allocation
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Abnormal Allocations Source
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Dirt Services
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Missing Bandwidth/Transport
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Missing Bandwidth
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Extra Internet
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Missing Internet Transport
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Veto
-										</label>
-									</div>
-								</div>
-								<div className="flex flex-col gap-2">
-									<label className="inline-flex gap-2 font-bold">
-										<input type="checkbox" />
-										Outlier Issues
-									</label>
-									<div className="flex flex-col gap-1 pl-4 text-sm">
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Change In Bandwidth
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Change In Cost/Mbps
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Cost/Mbps
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											Bandwidth/Student
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											change_num_students
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											not_meeting_connectivity_rule
-										</label>
-										<label className="inline-flex gap-2">
-											<input type="checkbox" />
-											increase_cost_per_mbps_rule
-										</label>
-									</div>
-								</div>
-							</div>
-						</div>
-					</Dropdown>}
+					<Filter setTableFilter={onChange} tableFilter={tableFilter} />}
 				{assignees &&
 					<Dropdown title={
 						<>
@@ -270,9 +169,6 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 									.toString().toLowerCase()
 									.includes(mainSearch.toString().toLowerCase())
 								
-								).filter((row) => 
-									!tableFilter.length ||
-									tableFilter.includes(row.filter.toString().toLowerCase())
 								).map((element, index) =>
 								{
 									return (
@@ -305,9 +201,6 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 								.toString().toLowerCase()
 								.includes(mainSearch.toString().toLowerCase())
 
-						).filter((row) =>
-							!tableFilter.length ||
-							tableFilter.includes(row.filter.toString().toLowerCase())
 						).map((element, index) =>
 						{
 							return (

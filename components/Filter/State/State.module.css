@@ -1,0 +1,26 @@
+.label {
+    @apply font-bold text-slate-500 text-xs truncate pb-1 dark:text-slate-50
+}
+
+.input_container {
+    @apply inline-flex items-center gap-2 py-1 px-2 rounded-md cursor-pointer
+}
+
+.input_container:hover {
+    @apply bg-blue-300/10 text-blue-500
+}
+
+.container {
+    @apply
+    bg-slate-50 
+    border 
+    border-slate-200 
+    rounded-md 
+    p-2
+    dark:bg-slate-800
+    dark:border-slate-700
+}
+
+.container .sub_container {
+    @apply flex flex-col gap-1 ml-4 border-l border-blue-500
+}

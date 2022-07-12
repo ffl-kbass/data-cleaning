@@ -30,17 +30,18 @@
 	@apply bg-slate-500 cursor-pointer
 }
 
-.gradient {
-	width: 64rem;
-	height: 64rem;
-	top: -25%;
-	left: -25%;
-	position: absolute;
-	z-index: 0;
-	transform: translateZ(0);
-    -webkit-mask-image: radial-gradient(farthest-side at 50% 50%,#000,transparent);
-    background-image: linear-gradient(90deg,#2563eb,#bae6fd);
-	background-position: -50% -50%;
-    opacity: .25;
-    filter: hue-rotate(0deg);
+input[type="checkbox"] {
+    @apply 
+	form-checkbox
+	shrink-0 
+	border-slate-300 
+	rounded 
+	text-blue-500 
+	pointer-events-none 
+	focus:ring-blue-500 
+	dark:bg-gray-900 
+	dark:border-gray-700 
+	dark:checked:bg-blue-500 
+	dark:checked:border-blue-500 
+	dark:focus:ring-offset-gray-800
 }
