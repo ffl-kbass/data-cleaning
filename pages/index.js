@@ -1,109 +1,136 @@
 import Table from "../components/Table"
 import Title from "../components/Title"
 import Assignees from "../components/Assignees"
-import Link from 'next/link'
 import Stats from "../components/Stats"
 import Badge from "../components/Badge"
+import Link from 'next/link'
+import { useQuery } from 'urql';
+import { useEffect, useState } from "react"
+
+const STATE_QUERY = `
+query(
+	$funding_year: Int,
+	$sort_by: String,
+	$sort_direction: String,
+) {
+  states (
+		funding_year: $funding_year,
+		sort_by: $sort_by,
+		sort_direction: $sort_direction,
+	) {
+		national {
+			percent_districts_clean
+			percent_meeting_goal
+		}
+		items {
+			type
+			filter
+			data {
+				state_code
+				funding_year
+				clean_districts
+				all_districts
+				percent_districts_clean
+				percent_meeting_goal
+			}
+		}
+		sort {
+				state_code
+				clean_districts
+				all_districts
+				percent_districts_clean
+				percent_meeting_goal
+		}
+	}
+}
+`;
 
 const States = () => {
-	const head = ['State', 'Clean Percentage', 'Assignees']
-	const body = [
-		{
-			type: 'success',
-      		filter: "Oklahoma",
-			data: [
-			{
-				type: Link,
-				props: {
-					href: "/Applicants/Oklahoma"
-				},
-				content: 'Oklahoma'
-			}, 
-			{
-				type: Badge,
-				props: {
-					type: 'success',
-					size: 'large'
-				},
-				content: '90%'
-			}, 
-			{
-				type: Assignees,
-				props: {
-					names: [{
-						first: "Kenny",
-						last: "Bass"
-					}]
-				}
-			}]
-		}, {
-			type: 'warning',
-			timestamp: '06/20/2022 12:00 PM',
-      		filter: "Texas",
-			data: [
-			{
-				type: Link,
-				props: {
-					href: "/Applicants/Texas"
-				},
-				content: 'Texas'
-			}, 
-			{
-				type: Badge,
-				props: {
-					type: 'warning',
-					size: 'large'
-				},
-				content: '50%'
-			},
-			{
-				type: Assignees,
-				props: {
-					names: [{
-						first: "Kenny",
-						last: "Bass"
-					},{
-						first: "Kenny",
-						last: "Bass"
-					},{
-						first: "Kenny",
-						last: "Bass"
-					}]
-				}
-			}]
-		}, {
-			type: 'emergency',
-      		filter: "Alaska",
-			data: [
-			{
-				type: Link,
-				props: {
-					href: "/Applicants/Alaska"
-				},
-				content: 'Alaska'
-			}, 
-			{
-				type: Badge,
-				props: {
-					type: 'emergency',
-					size: 'large'
-				},
-				content: '10%'
-			}, 
-			{
-				type: Assignees,
-				props: {
-					names: [{
-						first: "Kenny",
-						last: "Bass"
-					},{
-						first: "Kenny",
-						last: "Bass"
-					}]
-				}
-			}]
+	const [body, setBody] = useState([])
+	const [direction, setDirection] = useState('ASC')
+	const [column, setColumn] = useState('state_code')
+	const [sort, setSort] = useState([])
+	const [needs_attention, setNeeds_attention] = useState([])
+
+	const [result] = useQuery({
+		query: STATE_QUERY,
+		variables: {
+			funding_year: 2021,
+			sort_by: column,
+			sort_direction: direction
 		}
-	]
+	})
+
+	const { data, fetching, error } = result;
+
+	useEffect(() => {
+		if(fetching == true || error) return
+		let temp = []
+
+		const { items } = data.states
+
+		items.forEach(item => {
+			temp.push({
+				type: item.type,
+				filter: item.filter,
+				data: [
+					{
+						type: Link,
+						props: {
+							href: `/Applicants/${item.data.state_code}`
+						},
+						content: item.data.state_code
+					}, 
+					item.data.clean_districts,
+					item.data.all_districts,
+					{
+						type: Badge,
+						props: {
+							type: item.type,
+							size: 'large'
+						},
+						content: (item.data.percent_districts_clean).toFixed(2) + "%"
+					}, 
+					(item.data.percent_meeting_goal).toFixed(2) + "%",
+					{
+						type: Assignees,
+						props: {
+							names: [{
+								first: "Kenny",
+								last: "Bass"
+							}]
+						}
+					}
+				]
+			})
+		});
+		setBody(temp)
+
+		temp = []
+
+		Object.keys(data.states.sort).forEach(item => {
+			temp.push(
+				{
+					key: data.states.sort[item],
+					desc: () => setSorting('DESC', item),
+					asc: () => setDirection('ASC', item),
+				}
+			)
+		})
+		temp.pop()
+		setSort(temp)
+
+		temp = items.sort((a, b) => a.data.percent_districts_clean - b.data.percent_districts_clean).slice(0,3)
+		setNeeds_attention(temp)
+	},[data])
+
+	const setSorting = (dir, col) => {
+		setDirection(dir)
+		setColumn(col)
+	}
+
+
+	const head = ['State', 'Clean Districts', 'All Districts', 'Clean Percentage', 'Districts Meeting Goal', 'Assignees']
 
 	return (
 		<div className="pl-16">
@@ -112,14 +139,18 @@ const States = () => {
 				<div className="grid grid-rows-2 gap-2 h-full">
 					<Stats title="Overall Cleanliness">
 						<div className="w-full flex flex-row flex-nowrap items-center gap-2">
-							<div className="flex-grow h-2 rounded-full bg-green-500"/>
-							<p className="text-base">100%</p>
+							<div className="flex-grow h-2 bg-slate-300 rounded-full">
+								<div style={{width: (data ? Number(data.states.national.percent_districts_clean).toFixed(2) : 0) + '%'}} className="h-full rounded-full bg-green-500"/>
+							</div>
+							<p className="text-base">{data && Number(data.states.national.percent_districts_clean).toFixed(2)}%</p>
 						</div>
 					</Stats>
-					<Stats title="Overall Cleanliness">
+					<Stats title="Meeting Goal">
 						<div className="w-full flex flex-row flex-nowrap items-center gap-2">
-							<div className="flex-grow h-2 rounded-full bg-green-500"/>
-							<p className="text-base">100%</p>
+							<div className="flex-grow h-2 bg-slate-300 rounded-full">
+								<div style={{width: (data ? Number(data.states.national.percent_meeting_goal).toFixed(2) : 0) + '%'}} className="h-full rounded-full bg-green-500"/>
+							</div>
+							<p className="text-base">{data && Number(data.states.national.percent_meeting_goal).toFixed(2)}%</p>
 						</div>
 					</Stats>
 				</div>
@@ -147,28 +178,20 @@ const States = () => {
 				</Stats>
 				<Stats title="Needs Attention">
 					<ol className="h-full w-full px-4 py-2 space-y-2">
-						<li className="flex items-center gap-2">
-							<Badge type="emergency">
-								48
-							</Badge>
-							Oklahoma
-						</li>
-						<li className="flex items-center gap-2">
-							<Badge type="emergency">
-								49
-							</Badge>
-							Texas
-						</li>
-						<li className="flex items-center gap-2">
-							<Badge type="emergency">
-								50
-							</Badge>
-							Alaska
-						</li>
+						{needs_attention.map((item,index) => {
+							return (
+								<li key={index} className="flex items-center gap-2">
+									<Badge type={item.type}>
+										{(item.data.percent_districts_clean).toFixed(2) + "%"}
+									</Badge>
+								<Link href={`/Applicants/${item.filter}`}>{item.filter}</Link>
+							</li>
+							)
+						})}
 					</ol>
 				</Stats>
 			</div>
-			<Table head={head} body={body} />
+			<Table sort={sort} loading={fetching} head={head} body={body} filter={false}/>
 		</div>
 	)
 }

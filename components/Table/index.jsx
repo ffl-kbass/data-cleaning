@@ -3,11 +3,13 @@ import styles from "./Table.module.css"
 import drop from "../Dropdown/Dropdown.module.css"
 import Assignees from "../../components/Assignees"
 import Badge from "../../components/Badge"
+import Spinner from "../../components/Spinner"
+import Filter from "../Filter/State"
 import React, { useEffect, useRef, useState } from "react"
 import { useRouter } from 'next/router'
-import Filter from "../Filter/State"
+import Button from "../Button"
 
-const Table = ({head, body, search = true, sort = true, filter = true, assignees = true, timestamp = true}) => {
+const Table = ({head, body, search = true, sort = [], filter = true, assignees = true, timestamp = true, loading = false}) => {
 	const primary = useRef(null)
 	const secondary = useRef(null)
 
@@ -58,10 +60,6 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 		}
 	},[])
 
-	useEffect(() => {
-		console.log(tableFilter)
-	},[tableFilter])
-
 	const onChange = (section,e) => {
 		const items = {...tableFilter};
 		items[section][e.target.value] = e.target.checked;
@@ -81,7 +79,7 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 					<input type="text" placeholder="Search..." value={mainSearch} onChange={(e) => setMainSearch(e.target.value)}/>
 				</div>}
 				<div className={styles.buttons}>
-				{sort &&
+				{sort.length > 0 &&
 					<Dropdown title={
 						<>
 							<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -90,38 +88,25 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 							Sort
 						</>
 					}>
-						<button className={drop.element}>
-							<Badge shape="round">
-								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-									<path strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
-								</svg>
-							</Badge>
-							Districts Clean %
-						</button>
-						<button className={drop.element}>
-							<Badge shape="round">
-								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-									<path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-								</svg>
-							</Badge>
-							Districts Clean %
-						</button>
-						<button className={drop.element}>
-							<Badge shape="round">
-								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-									<path strokeLinecap="round" strokeLinejoin="round" d="M7 11l5-5m0 0l5 5m-5-5v12" />
-								</svg>
-							</Badge>
-							State Name
-						</button>
-						<button className={drop.element}>
-							<Badge shape="round">
-								<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-									<path strokeLinecap="round" strokeLinejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-								</svg>
-							</Badge>
-							State Name
-						</button>
+						{
+							sort.map((item, index) => {
+								return (
+									<div className="flex flex-row flex-nowrap items-center gap-2">
+										<p className="font-semibold text-sm text-slate-600 flex-1 dark:text-slate-50">{item.key}</p>
+										<Button onClick={item.asc}>
+											<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+												<path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+											</svg>
+										</Button>
+										<Button onClick={item.desc}>
+											<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+												<path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+											</svg>
+										</Button>
+									</div>
+								)
+							})
+						}
 					</Dropdown>}
 				{filter &&
 					<Filter setTableFilter={onChange} tableFilter={tableFilter} />}
@@ -154,7 +139,7 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 			<div className="flex flex-row-reverse h-full w-full max-w-7xl max-h-[30rem]">
 				<div className={styles.container}>
 					<div className={styles.sub} ref={primary}>
-						<table>
+						{!loading ? <table>
 							<thead>
 								<tr>
 									{head.map((element, index) => {
@@ -189,7 +174,10 @@ const Table = ({head, body, search = true, sort = true, filter = true, assignees
 									)
 								})}
 							</tbody>
-						</table>
+						</table> : 
+						<div className="w-full h-64 flex items-center justify-center">
+							<Spinner />
+						</div>}
 					</div>
 				</div>
 				{timestamp && <div className={styles.timestamp_container}>

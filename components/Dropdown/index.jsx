@@ -20,9 +20,9 @@ const Dropdown = ({children, title}) => {
 					{children.length > 1 ? children.map((element,index) => {
 						{if(element.type == 'button' || element.type == 'label') {
 							return (
-								<Menu.Item>
+								<Menu.Item key={index}>
 									{({active}) => (
-										<div key={index} className={`${styles.item} ${active && 'text-blue-600 bg-blue-300/10 dark:bg-blue-300/10'}`}>
+										<div className={`${styles.item} ${active && 'text-blue-600 bg-blue-300/10 dark:bg-blue-300/10'}`}>
 											{element}
 										</div>
 									)}

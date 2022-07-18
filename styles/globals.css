@@ -37,7 +37,6 @@ input[type="checkbox"] {
 	border-slate-300 
 	rounded 
 	text-blue-500 
-	pointer-events-none 
 	focus:ring-blue-500 
 	dark:bg-gray-900 
 	dark:border-gray-700 

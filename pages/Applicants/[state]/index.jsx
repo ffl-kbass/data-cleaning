@@ -1,31 +1,75 @@
 import Table from "../../../components/Table"
 import Title from "../../../components/Title"
 import Stats from "../../../components/Stats"
+import Assignees from "../../../components/Assignees"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import Assignees from "../../../components/Assignees"
+import { useQuery } from 'urql';
+import { useState, useEffect } from 'react'
+
+const DISTRICTS_QUERY = `
+query(
+	$funding_year: Int,
+	$state_code: String!,
+) {
+  districts (
+		funding_year: $funding_year,
+		state_code: $state_code,
+	) {
+		items {
+			funding_year
+			state_code
+			entity_name
+			entity_number
+		}
+	}
+}
+`;
 
 const Applicants = () =>
 {
+	const [body, setBody] = useState([])
+	const [direction, setDirection] = useState('ASC')
+	const [column, setColumn] = useState('state_code')
+	const [sort, setSort] = useState([])
 	const router = useRouter()
 
-	const head = ['Name', 'Entity Number', 'State']
-	const body = [
-		{
-			timestamp: '06/21/2022 12:00 PM',
-			data: [
-				{
-					type: Link,
-					props: {
-						href: `${ router.query.state }/123456`
-					},
-					content: "Arvon Township School District"
-				}, 
-				'131791', 
-				'Michigan'
-			]
+	const [result] = useQuery({
+		query: DISTRICTS_QUERY,
+		variables: {
+			funding_year: 2021,
+			state_code: router.query.state
 		}
-	]
+	})
+
+	const { data, fetching, error } = result;
+
+	const head = ['Name', 'Entity Number', 'State']
+
+	useEffect(() => {
+		if(fetching == true) return
+		let temp = []
+
+		const { items } = data.districts
+
+		items.forEach(item => {
+			temp.push({
+				filter: item.entity_name,
+				data: [
+					{
+						type: Link,
+						props: {
+							href: `${item.state_code}/${item.entity_number}`
+						},
+						content: item.entity_name
+					}, 
+					item.entity_number,
+					item.state_code,
+				]
+			})
+		});
+		setBody(temp)
+	},[data])
 
 	return (
 		<div className="pl-16">
@@ -66,7 +110,7 @@ const Applicants = () =>
 					</div>
 				</Stats>
 			</div>
-			<Table head={head} body={body} assignees={false} />
+			<Table loading={fetching} head={head} body={body} assignees={false} />
 		</div>
 	)
 }

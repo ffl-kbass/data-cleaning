@@ -1,5 +1,5 @@
 .container {
-	@apply opacity-40 p-2 flex flex-row flex-wrap gap-2 justify-center max-w-lg bg-slate-700 border border-slate-900 text-white rounded-md shadow
+	@apply opacity-40 p-2 flex flex-row flex-wrap gap-2 justify-center max-w-lg border text-white rounded-md shadow bg-slate-900 border-slate-700 dark:opacity-70
 }
 
 .container:hover {
@@ -13,5 +13,5 @@
 
 .container a:hover,
 .container button:hover {
-	@apply bg-slate-800
+	@apply bg-slate-600
 }
