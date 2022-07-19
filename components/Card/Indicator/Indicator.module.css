@@ -1,5 +1,5 @@
 .container {
-    @apply flex flex-row gap-2 items-center justify-start py-1
+    @apply relative
 }
 
 .container svg {
@@ -15,5 +15,17 @@
 }
 
 .edit:hover {
-    @apply bg-green-100
+    @apply bg-green-500/20
+}
+
+.activator {
+    @apply flex flex-row gap-2 items-center justify-start 
+}
+
+.hover_container {
+    @apply z-40 max-w-[10rem] h-auto absolute top-full origin-top-left translate-x-0 translate-y-0 hidden p-1 rounded-md break-words border border-slate-700 bg-slate-900 text-white text-xs
+}
+
+.activator:hover ~ .hover_container {
+    @apply block
 }

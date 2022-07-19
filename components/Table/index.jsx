@@ -91,7 +91,7 @@ const Table = ({head, body, search = true, sort = [], filter = true, assignees =
 						{
 							sort.map((item, index) => {
 								return (
-									<div className="flex flex-row flex-nowrap items-center gap-2">
+									<div key={index} className="flex flex-row flex-nowrap items-center gap-2">
 										<p className="font-semibold text-sm text-slate-600 flex-1 dark:text-slate-50">{item.key}</p>
 										<Button onClick={item.asc}>
 											<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

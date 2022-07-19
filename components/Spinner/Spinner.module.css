@@ -3,7 +3,7 @@
 }
 
 .spinner {
-    @apply max-w-[2rem] max-h-[2rem] text-slate-200 animate-spin dark:text-slate-50 fill-blue-600
+    @apply max-w-[2rem] max-h-[2rem] w-full h-full text-slate-200 animate-spin dark:text-slate-50 fill-blue-600
 }
 
 .label {

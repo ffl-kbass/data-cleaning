@@ -63,22 +63,7 @@ const Applicant = () =>
 	return (
 		<>
 			<div className='w-full flex items-center justify-center'>
-				{selected.length == 0 && <Edit>
-					<button>Add</button>
-				</Edit>}
-				{selected.length == 1 && 
-				<Edit>
-					<button>Add</button>
-					<button>Delete</button>
-					<button>Edit</button>
-					<button>Deallocate</button>
-				</Edit>}
-				{selected.length > 1 &&
-				<Edit>
-					<button>Add</button>
-					<button>Delete</button>
-					<button>Deallocate</button>
-				</Edit>}
+				<Edit selected={selected} />
 			</div>
 			<div className='flex flex-col h-full w-full overflow-hidden'>
 				<Title>
