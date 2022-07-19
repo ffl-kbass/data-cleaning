@@ -13,8 +13,10 @@ const Applicant = () =>
 	const router = useRouter()
 	const [scroll, setScroll] = useState(0)
 	const [toggle, setToggle] = useState(false)
-	const [selected, setSelected] = useState([])
+	const [selected, setSelected] = useState(null)
+	const [selected_checkBoxes, setSelected_checkBoxes] = useState([])
 	const [ent_num, setEntity_number] = useState(0)
+	const [POS, setPOS] = useState(null)
 
 	useEffect(() => {
 		if(router.query.district) {
@@ -46,24 +48,24 @@ const Applicant = () =>
 
 	const { data , fetching, error } = result;
 
-	const handleCheckboxChange = (event) =>
-	{
-		if (event.target.checked)
-		{
-			if (!selected.includes(event.target.value))
-			{
-				setSelected(prev => [...prev, event.target.value])
+	useEffect(() => {
+		if(!selected) return
+
+		setPOS(selected.target.getBoundingClientRect())
+
+		if (selected.target.checked) {
+			if (!selected_checkBoxes.includes(selected.target.value)) {
+				setSelected_checkBoxes(prev => [...prev, selected.target.value])
 			}
-		} else
-		{
-			setSelected(selected.filter(element => element != event.target.value));
+		} else {
+			setSelected_checkBoxes(selected_checkBoxes.filter(element => element != selected.target.value));
 		}
-	}
+	},[selected])
 
 	return (
 		<>
 			<div className='w-full flex items-center justify-center'>
-				<Edit selected={selected} />
+				<Edit selected={selected_checkBoxes} pos={POS} scroll={scroll} />
 			</div>
 			<div className='flex flex-col h-full w-full overflow-hidden'>
 				<Title>
@@ -80,13 +82,12 @@ const Applicant = () =>
 								scrollSync={toggle} 
 								scroll={setScroll} 
 								scrollPos={scroll} 
-								checked={handleCheckboxChange}
+								checked={setSelected}
 							/>
 							<ApplicantView 
 								entity_number={router.query.district[0]} 
 								year={router.query.district && router.query.district[1] ? router.query.district[1] : new Date().getFullYear() - 1} 
 								scrollSync={toggle}  
-								scroll={setScroll} 
 								scrollPos={scroll} 
 							/>
 						</>

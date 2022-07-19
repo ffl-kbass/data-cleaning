@@ -44,19 +44,12 @@
 
 .sidebar ul .item button,
 .sidebar ul .item a {
-	@apply w-full 
-	h-full
-	px-4
-	inline-flex
-	items-center
-	justify-start
-	cursor-pointer
-	truncate
+	@apply w-full
 }
 
-.sidebar ul .item:hover {
+/* .sidebar ul .item:hover {
 	@apply bg-blue-300/10 text-blue-600 dark:text-blue-50
-}
+} */
 
 .countdown {
 	@apply w-full
@@ -81,4 +74,32 @@
 
 .countdown .sub {
 	@apply text-xs
+}
+
+.modifiers {
+	@apply flex flex-row flex-wrap w-full p-2 mt-2 rounded-md bg-white border border-slate-200 dark:bg-slate-800 dark:border-slate-700
+}
+
+.sidebar.small {
+	@apply w-16 justify-center items-center bg-slate-900
+}
+
+.sidebar.small ul .item {
+	@apply w-auto justify-center items-center
+}
+
+.sidebar.small ul .item button {
+	@apply w-auto
+}
+
+.sidebar.small .logo {
+	@apply w-auto;
+}
+
+.sidebar.small .modifiers {
+	@apply p-0 border-none bg-transparent
+}
+
+.sidebar.small .modifiers button {
+	@apply w-full
 }
