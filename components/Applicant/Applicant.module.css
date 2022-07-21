@@ -17,19 +17,3 @@
 .edit:hover {
     @apply bg-slate-100/20
 }
-
-.card_content {
-    @apply flex flex-col gap-2 text-sm
-}
-
-.card_content .item {
-    @apply flex flex-row justify-between gap-2
-}
-
-.card_content .item .label {
-    @apply font-bold w-1/2 truncate
-}
-
-.card_content .item .content {
-    @apply w-1/2 truncate
-}

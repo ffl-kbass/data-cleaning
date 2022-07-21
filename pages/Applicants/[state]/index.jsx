@@ -5,16 +5,19 @@ import Assignees from "../../../components/Assignees"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useQuery } from 'urql';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { FilterContext } from '../../../Context/context';
 
 const DISTRICTS_QUERY = `
 query(
 	$funding_year: Int,
 	$state_code: String!,
+	$issues: String,
 ) {
   districts (
 		funding_year: $funding_year,
 		state_code: $state_code,
+		issues: $issues,
 	) {
 		items {
 			funding_year
@@ -28,17 +31,17 @@ query(
 
 const Applicants = () =>
 {
+	const { filter, dispatchFilterEvent } = useContext(FilterContext);
 	const [body, setBody] = useState([])
-	const [direction, setDirection] = useState('ASC')
-	const [column, setColumn] = useState('state_code')
-	const [sort, setSort] = useState([])
+	const [issues, setIssues] = useState("")
 	const router = useRouter()
 
 	const [result] = useQuery({
 		query: DISTRICTS_QUERY,
 		variables: {
-			funding_year: 2021,
-			state_code: router.query.state
+			funding_year: new Date().getFullYear(),
+			state_code: router.query.state,
+			issues: issues
 		}
 	})
 
@@ -57,9 +60,10 @@ const Applicants = () =>
 				filter: item.entity_name,
 				data: [
 					{
-						type: Link,
+						type: "a",
 						props: {
-							href: `${item.state_code}/${item.entity_number}`
+							href: `${item.state_code}/${item.entity_number}`,
+							target: '_blank'
 						},
 						content: item.entity_name
 					}, 
@@ -70,6 +74,22 @@ const Applicants = () =>
 		});
 		setBody(temp)
 	},[data])
+
+	useEffect(() => {
+		if(!filter) return
+
+		const temp = []
+		for(const key in filter) {
+			if(filter[key]){
+				temp.push(key)
+			}
+		}
+
+		let string = JSON.stringify(temp)
+		let format = string.substring(1, string.length - 1).replace(/"/g,"\'")
+
+		setIssues(format)
+	},[filter])
 
 	return (
 		<div className="pl-16">

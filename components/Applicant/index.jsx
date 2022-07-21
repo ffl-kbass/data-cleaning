@@ -1,24 +1,26 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'urql';
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useContext } from 'react'
+import { SelectedContext } from '../../Context/context';
 import Card from '../Card'
 import Indicator from '../Card/Indicator'
 import Table from '../Table'
-import card from '../Card/Card.module.css'
 import Dropdown from '../Dropdown'
 import styles from "./Applicant.module.css"
 import Spinner from '../Spinner'
-import Button from '../Button'
 import DISTRICT_QUERY from './Queries/district.js'
 import SERVICE_QUERY from './Queries/service.js'
 import DQI_QUERY from './Queries/dqi.js'
+import Metrics from './Metrics';
+import metric_styles from './Metrics/Metrics.module.css'
+import Skeleton from '../Spinner/Skeleton';
+import DQI from './DQI';
 
 const ApplicantView = ({ entity_number, year, scroll, scrollPos, scrollSync, checked = null, primary = false }) =>
 {
+	const { selected, dispatchSelectedEvent } = useContext(SelectedContext);
 	const app = useRef(null)
 	const [currentYear,setYear] = useState(year)
-	const [editClosed, setEditClosed] = useState(false)
-	const [editOpen, setEditOpen] = useState(false)
 	const [service, setService] = useState({
 		received: [],
 		not_received: []
@@ -89,34 +91,37 @@ const ApplicantView = ({ entity_number, year, scroll, scrollPos, scrollSync, che
 						information.narrative = sub_item.narrative
 						information.status = sub_item.status
 
-						temp.push({data: [
-							{
-								type: 'input',
-								props: {
-									value: sub_item.service_id,
-									type: "checkbox",
-									onChange: (e) => checked(e)
-								}
-							},
-							sub_item.line_item,
-							sub_item.purpose,
-							sub_item.download_speed_mbps, 
-							{
-								type: Indicator,
-								props: {
-									cleared: !sub_item.shared
-								}
-							}, 
-							sub_item.num_lines, 
-							sub_item.district_num_lines, 
-							`$${sub_item.monthly_recurring_eligible_costs}`, 
-							`$${sub_item.total_non_recurring_eligible_costs}`, 
-							sub_item.months_of_service, 
-							sub_item.contract_expiration_date, 
-						]})
-						if(!primary) {
-							temp[0].data.shift()
+						let sub_temp = { 
+							data: [
+								{
+									type: 'input',
+									props: {
+										value: sub_item.service_id,
+										type: "checkbox",
+										onChange: (e) => dispatchSelectedEvent(e)
+									}
+								},
+								sub_item.line_item,
+								sub_item.purpose,
+								sub_item.download_speed_mbps, 
+								{
+									type: Indicator,
+									props: {
+										cleared: !sub_item.shared
+									}
+								}, 
+								sub_item.num_lines, 
+								sub_item.district_num_lines, 
+								`$${sub_item.monthly_recurring_eligible_costs}`, 
+								`$${sub_item.total_non_recurring_eligible_costs}`, 
+								sub_item.months_of_service, 
+								sub_item.contract_expiration_date, 
+							]
 						}
+						if(!primary) {
+							sub_temp.data.shift()
+						}
+						temp.push(sub_temp)
 					})
 					parent_temp[type].push({info: information, data:temp});
 					temp = []
@@ -216,115 +221,10 @@ const ApplicantView = ({ entity_number, year, scroll, scrollPos, scrollSync, che
 			<div className='flex flex-col gap-4'>
 				<div className='flex flex-row flex-wrap gap-4'>
 					<Card className="flex-1 max-w-md min-w-[16rem]">
-					{!fetching ?
-						<>
-							<h2 className={card.title}>District Metrics</h2>
-							<ul className={styles.card_content}>
-								<li className={styles.item}>
-									<p className={styles.label}>District Name</p>
-									<p className={styles.content} title={data.district.items.entity_name}>{data.district.items.entity_name}</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>Entity Number</p>
-									<p className={styles.content}>{data.district.items.entity_number}</p>
-								</li>
-								{/* <li className={styles.item}>
-									<p className={styles.label}>Other District BENs</p>
-									<p className={styles.content}>test</p>
-								</li> */}
-								<li className={styles.item}>
-									<p className={styles.label}>State Code</p>
-									<p className={styles.content}>{data.district.items.state_code}</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>Child Entities/Schools</p>
-									<p className={styles.content} title={data.district.items.child_entity_numbers}>
-										{data.district.items.child_entity_numbers && JSON.parse(`[${data.district.items.child_entity_numbers}]`).length}
-									</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>Num Students</p>
-									<p className={styles.content}>{data.district.items.num_students}</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>Total BW</p>
-									<p className={styles.content}>{data.district.items.total_bandwidth_mbps} Mbps</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>BW/Student</p>
-									<p className={styles.content}>{data.district.items.bandwidth_per_student_mbps} Mbps</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>Adjusted BW/Student</p>
-									<p className={styles.content}>{data.district.items.adj_bandwidth_per_student_mbps} Mbps</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>Cost/Mbps</p>
-									<p className={styles.content}>${Number(data.district.items.cost_per_mbps).toFixed(2)}</p>
-								</li>
-								<li className={styles.item}>
-									<p className={styles.label}>Included in Connect K-12</p>
-									<p className={styles.content}>{data.district.items.in_universe == 1 ? 'True' : 'False'}</p>
-								</li>
-							</ul>
-						</>
-						: 
-						<div className='w-full h-full flex items-center justify-center'>
-							<Spinner />
-						</div>}
+						<Metrics loading={fetching} data={data} />
 					</Card>
 					<Card className="flex-1 flex flex-col gap-2 max-w-md min-w-[16rem]">
-					{!dqi_fetching ? <>
-						<h2 className={card.title}>Data Quality Indicators</h2>
-							<ul className='text-sm'>
-								<li className={styles.title}>
-									<p className='font-bold'>Open Issues Found:</p>
-									<Button as='button' type={['ghost','square']} onClick={() => setEditOpen(!editOpen)}>
-										<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-											<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-										</svg>
-									</Button>
-								</li>
-								{dqis.open.length > 0 ? dqis.open.map((item, index) => {
-									return (
-										<li key={index}>
-											<Indicator tooltip={item.hover} cleared={item.open} edit={editOpen}>
-												{item.readable}
-											</Indicator>
-										</li>
-									)
-								}) :
-								<div className='p-2 rounded-md text-xs bg-slate-100 dark:text-white dark:bg-slate-900'>
-									No Open Issues
-								</div>
-								}
-							</ul>
-							<ul className='text-sm'>
-								<li className={styles.title}>
-									<p className='font-bold'>Resolved Issues:</p>
-									<Button as='button' type={['ghost','square']} onClick={() => setEditClosed(!editClosed)}>
-										<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-											<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-										</svg>
-									</Button>
-								</li>
-								{dqis.closed.length > 0 ? dqis.closed.map((item, index) => {
-									return (
-										<li key={index}>
-											<Indicator tooltip={item.hover} cleared={item.open} edit={editClosed}>
-												{item.readable}
-											</Indicator>
-										</li>
-									)
-								}) :
-								<div className='p-2 rounded-md text-xs bg-slate-100 dark:text-white dark:bg-slate-900'>
-									No Open Issues
-								</div>
-								}
-							</ul>
-						</>
-						:
-						<Spinner />}
+						<DQI data={dqis} loading={dqi_fetching}/>
 					</Card>
 				</div>
 				{!service_fetching ? <>
@@ -334,18 +234,18 @@ const ApplicantView = ({ entity_number, year, scroll, scrollPos, scrollSync, che
 					{service.received.length > 0 ? service.received.map((item, index) => {
 						return (
 							<Card key={index} className="min-w-[16rem]">
-								<ul className={styles.card_content}>
-									<li className={`${styles.item} w-72`}>
-										<p className={styles.label}>FRN</p>
-										<p className={styles.content}>{item.info.frn}</p>
+								<ul className={metric_styles.container}>
+									<li className={`${metric_styles.item} w-72`}>
+										<p className={metric_styles.label}>FRN</p>
+										<p className={metric_styles.content}>{item.info.frn}</p>
 									</li>
-									<li className={`${styles.item} w-72`}>
-										<p className={styles.label}>Applicant</p>
-										<p className={styles.content}>{item.info.applicant}</p>
+									<li className={`${metric_styles.item} w-72`}>
+										<p className={metric_styles.label}>Applicant</p>
+										<p className={metric_styles.content}>{item.info.applicant}</p>
 									</li>
-									<li className={`${styles.item} w-72`}>
-										<p className={styles.label}>Service Provider</p>
-										<p className={styles.content}>{item.info.service_provider}</p>
+									<li className={`${metric_styles.item} w-72`}>
+										<p className={metric_styles.label}>Service Provider</p>
+										<p className={metric_styles.content}>{item.info.service_provider}</p>
 									</li>
 									<li className='p-2 rounded-md bg-slate-100 dark:text-white dark:bg-slate-900'>{item.info.narrative}</li>
 								</ul>
@@ -386,7 +286,26 @@ const ApplicantView = ({ entity_number, year, scroll, scrollPos, scrollSync, che
 						No Services Found
 					</div>
 					}
-				</> : <Card><Spinner /></Card>}
+				</> : 
+				<Card className="min-w-[16rem]">
+					<ul className={metric_styles.container}>
+						<li className={`${metric_styles.item} w-72`}>
+							<p className={metric_styles.label}>FRN</p>
+							<Skeleton />
+						</li>
+						<li className={`${metric_styles.item} w-72`}>
+							<p className={metric_styles.label}>Applicant</p>
+							<Skeleton />
+						</li>
+						<li className={`${metric_styles.item} w-72`}>
+							<p className={metric_styles.label}>Service Provider</p>
+							<Skeleton />
+						</li>
+						<li className='p-2 rounded-md bg-slate-100 dark:text-white dark:bg-slate-900'><Skeleton /></li>
+					</ul>
+					<Table head={head} body={[{data: [{type: Skeleton}, {type: Skeleton}, {type: Skeleton}, {type: Skeleton}, {type: Skeleton}, {type: Skeleton}, {type: Skeleton}, {type: Skeleton}, {type: Skeleton}, {type: Skeleton}]}]} search={false} filter={false} sort={false} assignees={false} timestamp={false} />
+				</Card>
+				}
 			</div>
 		</div>
 	)

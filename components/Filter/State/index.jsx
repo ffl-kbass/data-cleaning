@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import Dropdown from "../../Dropdown"
 import styles from "./State.module.css"
+import { FilterContext } from '../../../Context/context';
 
-const Filter = ({setTableFilter, tableFilter}) => {
+const Filter = () => {
+    const { filter, dispatchFilterEvent } = useContext(FilterContext);
     return (
         <Dropdown title={
             <>
@@ -12,80 +15,67 @@ const Filter = ({setTableFilter, tableFilter}) => {
             </>
         }>
             <div className="flex flex-col gap-2">
-                <div className={`${styles.container} flex flex-row gap-4`}>
-                    <div className="flex flex-col">
-                        <p className={styles.label}>Applicant Type</p>
-                        <label className={styles.input_container}>
-                            <input type="checkbox" value="districts" onChange={(e) => setTableFilter("applicant_type",e)} checked={tableFilter.applicant_type.districts}/>
-                            Districts
-                        </label>
-                    </div>
-                </div>
                 <div className="flex flex-row gap-2">
                     <div className={`${styles.container} flex flex-col`}>
                         <p className={styles.label}>District Issues</p>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="missing_allocation" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.missing_allocation}/>
+                            <input type="checkbox" value="allocations_missing" onChange={(e) => dispatchFilterEvent(e)} checked={filter.allocations_missing}/>
                             Missing Allocation
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="abnormal_allocations_source" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.abnormal_allocations_source}/>
+                            <input type="checkbox" value="allocations_source" onChange={(e) => dispatchFilterEvent(e)} checked={filter.allocations_source}/>
                             Abnormal Allocations Source
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="dirty_services" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.dirty_services}/>
-                            Dirt Services
+                            <input type="checkbox" value="dirty_services" onChange={(e) => dispatchFilterEvent(e)} checked={filter.dirty_services}/>
+                            Dirty Services
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="missing_bandwidth_transport" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.missing_bandwidth_transport}/>
+                            <input type="checkbox" value="districts_missing_ia" onChange={(e) => dispatchFilterEvent(e)} checked={filter.districts_missing_ia}/>
                             Missing Bandwidth/Transport
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="missing_bandwidth" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.missing_bandwidth}/>
+                            <input type="checkbox" value="isp_missing" onChange={(e) => dispatchFilterEvent(e)} checked={filter.isp_missing}/>
                             Missing Bandwidth
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="extra_internet" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.extra_internet}/>
+                            <input type="checkbox" value="surplus_ia" onChange={(e) => dispatchFilterEvent(e)} checked={filter.surplus_ia}/>
                             Extra Internet
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="missing_internet_transport" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.missing_internet_transport}/>
+                            <input type="checkbox" value="upstream_missing" onChange={(e) => dispatchFilterEvent(e)} checked={filter.upstream_missing}/>
                             Missing Internet Transport
-                        </label>
-                        <label className={styles.input_container}>
-                            <input type="checkbox" value="veto" onChange={(e) => setTableFilter("district_issues",e)} checked={tableFilter.district_issues.veto}/>
-                            Veto
                         </label>
                     </div>
                     <div className={`${styles.container} flex flex-col`}>
                         <p className={styles.label}>Outlier Issues</p>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="change_in_bandwidth" onChange={(e) => setTableFilter("outlier_issues",e)} checked={tableFilter.outlier_issues.change_in_bandwidth}/>
-                            Change In Bandwidth
+                            <input type="checkbox" value="outlier_change_in_bw" onChange={(e) => dispatchFilterEvent(e)} checked={filter.outlier_change_in_bw}/>
+                            Outlier: Change in Bandwidth
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="change_in_cost_mbps" onChange={(e) => setTableFilter("outlier_issues",e)} checked={tableFilter.outlier_issues.change_in_cost_mbps}/>
-                            Change In Cost/Mbps
+                            <input type="checkbox" value="outlier_change_in_cost_per_mbps" onChange={(e) => dispatchFilterEvent(e)} checked={filter.outlier_change_in_cost_per_mbps}/>
+                            Outlier: Change in Cost/Mbps
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="cost_mbps" onChange={(e) => setTableFilter("outlier_issues",e)} checked={tableFilter.outlier_issues.cost_mbps}/>
-                            Cost/Mbps
+                            <input type="checkbox" value="outlier_ia_bandwidth_per_student" onChange={(e) => dispatchFilterEvent(e)} checked={filter.outlier_ia_bandwidth_per_student}/>
+                            Outlier: Bandwidth/Student
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="bandwidth_student" onChange={(e) => setTableFilter("outlier_issues",e)} checked={tableFilter.outlier_issues.bandwidth_student}/>
-                            Bandwidth/Student
+                            <input type="checkbox" value="outlier_ia_monthly_cost_per_mbps" onChange={(e) => dispatchFilterEvent(e)} checked={filter.outlier_ia_monthly_cost_per_mbps}/>
+                            Outlier: Cost/Mbps
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="change_num_students" onChange={(e) => setTableFilter("outlier_issues",e)} checked={tableFilter.outlier_issues.change_num_students}/>
-                            change_num_students
+                            <input type="checkbox" value="outlier_change_num_students" onChange={(e) => dispatchFilterEvent(e)} checked={filter.outlier_change_num_students}/>
+                            outlier_change_num_students
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="not_meeting_connectivity_rule" onChange={(e) => setTableFilter("outlier_issues",e)} checked={tableFilter.outlier_issues.not_meeting_connectivity_rule}/>
-                            not_meeting_connectivity_rule
+                            <input type="checkbox" value="outlier_increase_cost_per_mbps_rule" onChange={(e) => dispatchFilterEvent(e)} checked={filter.outlier_increase_cost_per_mbps_rule}/>
+                            outlier_increase_cost_per_mbps_rule
                         </label>
                         <label className={styles.input_container}>
-                            <input type="checkbox" value="increase_cost_per_mbps_rule" onChange={(e) => setTableFilter("outlier_issues",e)} checked={tableFilter.outlier_issues.increase_cost_per_mbps_rule}/>
-                            increase_cost_per_mbps_rule
+                            <input type="checkbox" value="outlier_not_meeting_connectivity_rule" onChange={(e) => dispatchFilterEvent(e)} checked={filter.outlier_not_meeting_connectivity_rule}/>
+                            outlier_not_meeting_connectivity_rule
                         </label>
                     </div>
                 </div>

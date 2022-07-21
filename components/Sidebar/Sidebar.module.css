@@ -81,7 +81,7 @@
 }
 
 .sidebar.small {
-	@apply w-16 justify-center items-center bg-slate-900
+	@apply w-16 justify-center items-center
 }
 
 .sidebar.small ul .item {

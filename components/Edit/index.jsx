@@ -1,9 +1,12 @@
 import styles from './Edit.module.css'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { SelectedContext } from '../../Context/context';
 
-const Edit = ({selected}) => {
+const Edit = () => {
 	const [edit, setEdit] = useState(false)
+	const { selected } = useContext(SelectedContext);
+
 	return (
 		<>
 		{edit && <motion.div 

@@ -14,38 +14,7 @@ const Table = ({head, body, search = true, sort = [], filter = true, assignees =
 	const secondary = useRef(null)
 
 	const [mainSearch, setMainSearch] = useState("")
-	const [filterSearch, setFilterSearch] = useState("")
-	const [tableFilter, setTableFilter] = useState({
-		applicant_type: {
-			districts: false,
-		},
-		filter_dqis: {
-			no_dqi_filter: false,
-		},
-		district_issues: {
-			missing_allocation: false,
-			district_issues: false,
-			missing_allocation: false,
-			abnormal_allocations_source: false,
-			dirty_services: false,
-			missing_bandwidth_transport: false,
-			missing_bandwidth: false,
-			extra_internet: false,
-			missing_internet_transport: false,
-			veto: false,
-		},
-		outlier_issues: {
-			outlier_issues: false,
-			change_in_bandwidth: false,
-			change_in_cost_mbps: false,
-			cost_mbps: false,
-			bandwidth_student: false,
-			change_num_students: false,
-			not_meeting_connectivity_rule: false,
-			increase_cost_per_mbps_rule: false
-		}
-	})
-
+	
 	useEffect(() => {
 		if(timestamp){
 			primary.current.addEventListener('scroll', (element) => {
@@ -59,13 +28,6 @@ const Table = ({head, body, search = true, sort = [], filter = true, assignees =
 			)
 		}
 	},[])
-
-	const onChange = (section,e) => {
-		const items = {...tableFilter};
-		items[section][e.target.value] = e.target.checked;
-
-		setTableFilter(items);
-	}
 	
 	return (
 		<>
@@ -109,7 +71,7 @@ const Table = ({head, body, search = true, sort = [], filter = true, assignees =
 						}
 					</Dropdown>}
 				{filter &&
-					<Filter setTableFilter={onChange} tableFilter={tableFilter} />}
+					<Filter />}
 				{assignees &&
 					<Dropdown title={
 						<>
@@ -159,9 +121,22 @@ const Table = ({head, body, search = true, sort = [], filter = true, assignees =
 									return (
 										<tr key={index} className={styles[element.type]}>
 											{element.data.map((item, index) => {
+												if(item == null) return <td key={index}><Badge type='emergency'>Error</Badge></td>
 												if(typeof item == 'object' && !React.isValidElement(item)) {
 													if(!item.type) return
-													const Tag = item.type													
+													const Tag = item.type
+													if(typeof item.child == 'object') {
+														const Child = item.child.type
+														return (
+															<td key={index}>
+																<Tag {...item.props}>
+																	<Child {...item.child.props}>
+																		{item.content && item.content}
+																	</Child>
+																</Tag>
+															</td>
+														)
+													}													
 													return (
 														<td key={index}>
 															<Tag {...item.props}>{item.content && item.content}</Tag>

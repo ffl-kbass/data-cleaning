@@ -1,0 +1,23 @@
+.container {
+    @apply flex flex-col gap-2 text-sm
+}
+
+.title {
+    @apply font-bold text-xl pb-2 truncate
+}
+
+.sub_title {
+    @apply font-semibold truncate flex flex-row items-center justify-between
+}
+
+.container .item {
+    @apply flex flex-row justify-between gap-2
+}
+
+.container .item .label {
+    @apply font-semibold w-1/2 truncate text-slate-500 dark:text-slate-50
+}
+
+.container .item .content {
+    @apply w-1/2 truncate
+}

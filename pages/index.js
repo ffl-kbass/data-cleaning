@@ -32,6 +32,7 @@ query(
 				all_districts
 				percent_districts_clean
 				percent_meeting_goal
+				time
 			}
 		}
 		sort {
@@ -73,6 +74,7 @@ const States = () => {
 			temp.push({
 				type: item.type,
 				filter: item.filter,
+				timestamp: item.data.time,
 				data: [
 					{
 						type: Link,
