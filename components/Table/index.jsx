@@ -94,7 +94,7 @@ const Table = ({
                     key={index}
                     className="flex flex-row flex-nowrap items-center gap-2"
                   >
-                    <p className="font-semibold text-sm text-slate-600 flex-1 dark:text-slate-50">
+                    <p className="flex-1 text-sm font-semibold text-slate-600 dark:text-slate-50">
                       {item.key}
                     </p>
                     <Button onClick={item.asc}>
@@ -182,7 +182,7 @@ const Table = ({
           )}
         </div>
       </div>
-      <div className="flex flex-row-reverse h-full w-full max-w-7xl max-h-[30rem]">
+      <div className="flex h-full max-h-[30rem] w-full max-w-7xl flex-row-reverse">
         <div className={styles.container}>
           <div className={styles.sub} ref={primary}>
             {!loading ? (
@@ -248,7 +248,7 @@ const Table = ({
                 </tbody>
               </table>
             ) : (
-              <div className="w-full h-64 flex items-center justify-center">
+              <div className="flex h-64 w-full items-center justify-center">
                 <Spinner />
               </div>
             )}
@@ -258,7 +258,7 @@ const Table = ({
           <div className={styles.timestamp_container}>
             {/* <div className="pointer-events-none z-40 h-4 w-full absolute top-0 bg-gradient-to-b from-white to-transparent"></div> */}
             <ul
-              className="h-full w-full overflow-hidden relative"
+              className="relative h-full w-full overflow-hidden"
               ref={secondary}
             >
               {body

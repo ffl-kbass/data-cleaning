@@ -28,7 +28,7 @@ const Dropdown = ({ children, title }) => {
                           <div
                             className={`${styles.item} ${
                               active &&
-                              "text-blue-600 bg-blue-300/10 dark:bg-blue-300/10"
+                              "bg-blue-300/10 text-blue-600 dark:bg-blue-300/10"
                             }`}
                           >
                             {element}

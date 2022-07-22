@@ -60,10 +60,10 @@ const Applicant = () => {
 
   return (
     <SelectedContext.Provider value={{ selected, dispatchSelectedEvent }}>
-      <div className="w-full flex items-center justify-center">
+      <div className="flex w-full items-center justify-center">
         <Edit />
       </div>
-      <div className="flex flex-col h-full w-full overflow-hidden">
+      <div className="flex h-full w-full flex-col overflow-hidden">
         <Title>
           {data ? data.district.items.entity_name : "Finding Client..."}
         </Title>

@@ -176,9 +176,9 @@ const Statistics = () => {
   return (
     <div>
       <Title>Statistics</Title>
-      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="mb-8 grid w-full max-w-7xl grid-cols-1 gap-4 md:grid-cols-3">
         <Stats title="Top Cleaners">
-          <ol className="h-full w-full px-4 py-2 space-y-2">
+          <ol className="h-full w-full space-y-2 px-4 py-2">
             <li className="flex items-center gap-2">
               <Badge type="success">1</Badge>
               Kenny Bass
@@ -194,7 +194,7 @@ const Statistics = () => {
           </ol>
         </Stats>
         <Stats title="Bottom Cleaners">
-          <ol className="h-full w-full px-4 py-2 space-y-2">
+          <ol className="h-full w-full space-y-2 px-4 py-2">
             <li className="flex items-center gap-2">
               <Badge type="emergency">15</Badge>
               Kenny Bass
@@ -210,7 +210,7 @@ const Statistics = () => {
           </ol>
         </Stats>
         <Stats title="Needs Attention">
-          <ol className="h-full w-full px-4 py-2 space-y-2">
+          <ol className="h-full w-full space-y-2 px-4 py-2">
             <li className="flex items-center gap-2">
               <Badge type="emergency">48</Badge>
               Oklahoma

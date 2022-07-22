@@ -1,19 +1,28 @@
 .title {
-    @apply flex flex-row gap-2 items-center justify-start py-1
+  @apply flex 
+  flex-row 
+  items-center 
+  justify-start 
+  gap-2 
+  py-1;
 }
 
 .title p {
-    @apply truncate py-1 w-full
+  @apply w-full 
+  truncate 
+  py-1;
 }
 
 .title:hover .edit {
-    @apply block
+  @apply block;
 }
 
 .edit {
-    @apply p-1 rounded-md hidden
+  @apply hidden 
+  rounded-md 
+  p-1;
 }
 
 .edit:hover {
-    @apply bg-slate-100/20
+  @apply bg-slate-100/20;
 }

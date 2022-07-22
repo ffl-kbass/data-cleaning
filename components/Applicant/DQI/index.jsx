@@ -13,7 +13,7 @@ const DQI = ({ data, loading }) => {
       <h2 className={styles.title}>Data Quality Indicators</h2>
       <ul className="text-sm">
         <li className={styles.sub_title}>
-          <p className="font-bold pb-1">Open Issues Found:</p>
+          <p className="pb-1 font-bold">Open Issues Found:</p>
           {data.open.length > 0 && (
             <Button
               as="button"
@@ -48,7 +48,7 @@ const DQI = ({ data, loading }) => {
                 );
               })
             ) : (
-              <div className="p-2 rounded-md text-xs bg-slate-100 dark:text-white dark:bg-slate-900">
+              <div className="rounded-md bg-slate-100 p-2 text-xs dark:bg-slate-900 dark:text-white">
                 No Open Issues
               </div>
             )}
@@ -59,7 +59,7 @@ const DQI = ({ data, loading }) => {
       </ul>
       <ul className="text-sm">
         <li className={styles.sub_title}>
-          <p className="font-bold pb-1">Resolved Issues:</p>
+          <p className="pb-1 font-bold">Resolved Issues:</p>
           {data.closed.length > 0 && (
             <Button
               as="button"
@@ -94,7 +94,7 @@ const DQI = ({ data, loading }) => {
                 );
               })
             ) : (
-              <div className="p-2 rounded-md text-xs bg-slate-100 dark:text-white dark:bg-slate-900">
+              <div className="rounded-md bg-slate-100 p-2 text-xs dark:bg-slate-900 dark:text-white">
                 No Open Issues
               </div>
             )}

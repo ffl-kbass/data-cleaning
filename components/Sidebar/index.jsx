@@ -11,9 +11,9 @@ const Sidebar = ({ setDark, dark }) => {
     <aside className={`${styles.sidebar} ${side && styles.small}`}>
       <div className={styles.logo}>
         {!side ? (
-          <h1 className="font-bold text-3xl">Data Cleaning</h1>
+          <h1 className="text-3xl font-bold">Data Cleaning</h1>
         ) : (
-          <div className="p-2 rounded-md bg-blue-500 text-white">
+          <div className="rounded-md bg-blue-500 p-2 text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

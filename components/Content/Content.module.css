@@ -1,5 +1,12 @@
 .content {
-	@apply p-4 md:p-8 lg:p-12
-	overflow-hidden relative
-	w-full  h-full z-20 bg-white dark:bg-slate-900
+  @apply relative 
+  z-20 
+  h-full
+  w-full 
+  overflow-hidden
+bg-white  
+  p-4 
+  dark:bg-slate-900 
+  md:p-8 
+  lg:p-12;
 }

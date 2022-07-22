@@ -1,43 +1,68 @@
 .container {
-	@apply overflow-hidden border border-slate-300 w-full bg-white rounded-md dark:bg-slate-800 dark:border-slate-700
+  @apply w-full 
+	overflow-hidden 
+	rounded-md 
+	border 
+	border-slate-300
+	bg-white 
+	dark:border-slate-700 
+	dark:bg-slate-800;
 }
 
 .sub {
-	@apply w-full h-full max-h-[30rem] overflow-auto
+  @apply h-full 
+	max-h-[30rem] 
+	w-full 
+	overflow-auto;
 }
 
 .sub table {
-	@apply w-full relative
+  @apply relative 
+	w-full;
 }
 
 .sub table thead {
-	@apply top-0 sticky z-30 h-12
+  @apply sticky 
+	top-0 
+	z-30 
+	h-12;
 }
 
 .sub table tr {
-	@apply  bg-white h-10 dark:bg-slate-800
+  @apply h-10 
+	bg-white 
+	dark:bg-slate-800;
 }
 
-.sub table tr td:not(:last-child), 
+.sub table tr td:not(:last-child),
 .sub table tr th:not(:last-child) {
-	@apply border-r border-slate-300 dark:border-slate-700
+  @apply border-r 
+	border-slate-300 
+	dark:border-slate-700;
 }
 
 .sub table thead tr {
-	@apply border-b border-slate-300 dark:border-slate-700
+  @apply border-b 
+	border-slate-300 
+	dark:border-slate-700;
 }
 
 .sub table tbody tr:not(:last-child) {
-	@apply border-b border-slate-300 dark:border-slate-700
+  @apply border-b 
+	border-slate-300 
+	dark:border-slate-700;
 }
 
 .sub table tbody tr:hover {
-	@apply bg-blue-50 dark:bg-blue-900
+  @apply bg-blue-300/20;
 }
 
 .sub table th,
 .sub table td {
-	@apply text-left px-4 min-w-[6rem] truncate
+  @apply min-w-[6rem] 
+	truncate 
+	px-4 
+	text-left;
 }
 
 /* .sub table tr:nth-child(even) {
@@ -45,15 +70,20 @@
 } */
 
 .sub table th {
-	@apply font-bold text-slate-500 text-xs dark:text-slate-50
+  @apply text-xs 
+	font-bold 
+	text-slate-500
+	dark:text-slate-50;
 }
 
 .sub table td {
-	@apply text-base dark:text-slate-50
+  @apply text-base 
+	dark:text-slate-50;
 }
 
 .sub table a {
-	@apply text-blue-600 dark:text-blue-400
+  @apply text-blue-600 
+	dark:text-blue-400;
 }
 
 /* .sub table tr.success,
@@ -80,83 +110,115 @@
 } */
 
 .timestamp_container {
-	@apply overflow-hidden h-full max-h-[27rem] w-24 relative top-[3.1rem] z-30 -ml-24 pr-0.5
+  @apply relative 
+	top-[3.1rem] 
+	z-30 
+	-ml-24 
+	h-full 
+	max-h-[27rem] 
+	w-24 
+	overflow-hidden 
+	pr-0.5;
 }
 
 .timestamp_container .timestamp {
-	@apply h-10 flex items-center flex-row-reverse gap-2 py-2 relative 
+  @apply relative 
+	flex 
+	h-10 
+	flex-row-reverse 
+	items-center 
+	gap-2 
+	py-2;
 }
 
 .timestamp_container .marker {
-	@apply relative z-30 w-1.5 h-full bg-blue-600 rounded-md flex-none cursor-pointer
+  @apply relative 
+	z-30 
+	h-full 
+	w-1.5 
+	flex-none 
+	cursor-pointer 
+	rounded-md 
+	bg-blue-600;
 }
 
 .timestamp_container .timestamp .marker:hover + span {
-	@apply translate-x-0
+  @apply translate-x-0;
 }
 
 .timestamp_container .timestamp span {
-	@apply w-[4rem] relative translate-x-[6rem]
+  @apply relative 
+	w-[4rem] 
+	translate-x-[6rem];
 }
 
 .timestamp_container .timestamp .title {
-	@apply text-[.6rem] font-semibold text-slate-500 dark:text-slate-50
+  @apply text-[.6rem] 
+	font-semibold 
+	text-slate-500 
+	dark:text-slate-50;
 }
 
 .timestamp_container .timestamp .text {
-	@apply text-[.7rem] text-slate-500 truncate dark:text-slate-50
+  @apply truncate 
+	text-[.7rem] 
+	text-slate-500 
+	dark:text-slate-50;
 }
 
 .modifiers {
-	@apply w-full 
-	py-4
-	flex
+  @apply flex 
+	w-full
 	flex-row
 	flex-wrap
 	gap-2
+	py-4;
 }
 
 .modifiers .buttons {
-	@apply flex-1
-	flex
+  @apply flex
+	flex-1
 	flex-row
-	gap-2
+	gap-2;
 }
 
 .modifiers .input {
-	@apply relative
+  @apply relative;
 }
 
 .modifiers .input .search {
-	@apply absolute
+  @apply absolute
 	top-1/2
-	-translate-y-1/2
 	left-2.5
-	text-slate-500
+	-translate-y-1/2
 	bg-white
-	dark:text-slate-100
+	text-slate-500
 	dark:bg-slate-800
+	dark:text-slate-100;
 }
 
 .modifiers .input input[type="text"] {
-	@apply
-	rounded-md
-	h-10
-	pl-10
-	pr-4
+  @apply h-10
 	truncate
+	rounded-md
 	border
 	border-slate-300
 	bg-white
-	dark:text-slate-100
-	dark:bg-slate-800
+	pl-10
+	pr-4
 	dark:border-slate-700
+	dark:bg-slate-800
+	dark:text-slate-100;
 }
 
 .link {
-	@apply text-blue-600 cursor-pointer p-0.5 px-2
+  @apply cursor-pointer 
+	p-0.5 
+	px-2 
+	text-blue-600;
 }
 
 .link:hover {
-	@apply rounded-full bg-blue-600/10
+  @apply rounded-full 
+	bg-blue-600/10;
 }

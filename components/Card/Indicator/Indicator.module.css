@@ -1,31 +1,54 @@
 .container {
-    @apply relative
+  @apply relative;
 }
 
 .container svg {
-    @apply flex-none
+  @apply flex-none;
 }
 
 .container p {
-    @apply truncate py-1
+  @apply truncate 
+  py-1;
 }
 
 .edit {
-    @apply p-1 rounded-md flex-none text-green-500
+  @apply flex-none 
+  rounded-md 
+  p-1 
+  text-green-500;
 }
 
 .edit:hover {
-    @apply bg-green-500/20
+  @apply bg-green-500/20;
 }
 
 .activator {
-    @apply flex flex-row gap-2 items-center justify-start 
+  @apply flex 
+  flex-row 
+  items-center 
+  justify-start 
+  gap-2;
 }
 
 .hover_container {
-    @apply z-40 max-w-[10rem] h-auto absolute top-full origin-top-left translate-x-0 translate-y-0 hidden p-1 rounded-md break-words border border-slate-700 bg-slate-900 text-white text-xs
+  @apply absolute 
+  top-full 
+  z-40 
+  hidden 
+  h-auto 
+  max-w-[10rem] 
+  origin-top-left 
+  translate-x-0 
+  translate-y-0 
+  break-words 
+  rounded-md border 
+  border-slate-700 
+  bg-slate-900 
+  p-1 
+  text-xs 
+  text-white;
 }
 
 .activator:hover ~ .hover_container {
-    @apply block
+  @apply block;
 }

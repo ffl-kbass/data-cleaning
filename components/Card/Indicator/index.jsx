@@ -39,9 +39,9 @@ const Indicator = ({ children, cleared, edit = false, tooltip }) => {
       </div>
       {edit && (
         <div className="flex flex-row gap-1 py-0.5">
-          <div className="flex-1 grid grid-cols-2 gap-1">
-            <input className="flex flex-shrink border bg-slate-50 rounded-md text-sm px-1" />
-            <input className="flex flex-shrink border bg-slate-50 rounded-md text-sm px-1" />
+          <div className="grid flex-1 grid-cols-2 gap-1">
+            <input className="flex flex-shrink rounded-md border bg-slate-50 px-1 text-sm" />
+            <input className="flex flex-shrink rounded-md border bg-slate-50 px-1 text-sm" />
             {/* <input className="flex flex-shrink border bg-slate-50 rounded-md text-sm px-1"/> */}
           </div>
           <button className={styles.edit}>

@@ -1,15 +1,44 @@
 .dropdown {
-	@apply w-auto h-auto p-2 bg-white border border-slate-300 rounded-md absolute translate-x-0 translate-y-2 z-40 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-50
+  @apply absolute 
+  z-40 
+  h-auto 
+  w-auto 
+  translate-x-0 
+  translate-y-2 
+  rounded-md 
+  border 
+  border-slate-300 
+  bg-white 
+  p-2 
+  dark:border-slate-700 
+  dark:bg-slate-900 
+  dark:text-slate-50;
 }
 
 .list {
-	@apply flex flex-col max-h-60 overflow-y-auto
+  @apply flex 
+  max-h-60 
+  flex-col 
+  overflow-y-auto;
 }
 
 .dropdown .element {
-	@apply h-10 w-full px-4 bg-transparent text-slate-900 font-semibold inline-flex flex-row gap-2 items-center justify-start rounded-md cursor-pointer dark:text-slate-50
+  @apply inline-flex 
+  h-10 
+  w-full 
+  cursor-pointer 
+  flex-row 
+  items-center 
+  justify-start 
+  gap-2 
+  rounded-md 
+  bg-transparent 
+  px-4 
+  font-semibold 
+  text-slate-900 
+  dark:text-slate-50;
 }
 
 .item {
-	@apply rounded-md
+  @apply rounded-md;
 }

@@ -1,26 +1,42 @@
 .label {
-    @apply font-bold text-slate-500 text-xs truncate pb-1 dark:text-slate-50
+  @apply truncate 
+  pb-1 
+  text-xs 
+  font-bold 
+  text-slate-500 
+  dark:text-slate-50;
 }
 
 .input_container {
-    @apply inline-flex items-center gap-2 py-1 px-2 rounded-md cursor-pointer
+  @apply inline-flex 
+  cursor-pointer 
+  items-center 
+  gap-2 
+  rounded-md 
+  py-1 
+  px-2;
 }
 
 .input_container:hover {
-    @apply bg-blue-300/10 text-blue-500
+  @apply bg-blue-300/10 
+  text-blue-500;
 }
 
 .container {
-    @apply
-    bg-slate-50 
-    border 
-    border-slate-300 
-    rounded-md 
-    p-2
-    dark:bg-slate-800
-    dark:border-slate-700
+  @apply rounded-md 
+  border 
+  border-slate-300 
+  bg-slate-50 
+  p-2
+  dark:border-slate-700
+  dark:bg-slate-800;
 }
 
 .container .sub_container {
-    @apply flex flex-col gap-1 ml-4 border-l border-blue-500
+  @apply ml-4 
+  flex 
+  flex-col 
+  gap-1 
+  border-l 
+  border-blue-500;
 }

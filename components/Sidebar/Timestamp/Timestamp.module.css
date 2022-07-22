@@ -1,11 +1,16 @@
 .container {
-	@apply w-full flex flex-col
+  @apply flex 
+  w-full 
+  flex-col;
 }
 
 .title {
-	@apply text-xs font-semibold text-slate-500
+  @apply text-xs 
+  font-semibold 
+  text-slate-500;
 }
 
 .timestamp {
-	@apply text-base text-slate-500
+  @apply text-base 
+  text-slate-500;
 }

@@ -1,26 +1,28 @@
 .container {
-	@apply flex flex-row flex-nowrap
+  @apply flex 
+  flex-row 
+  flex-nowrap;
 }
 
 .assignee {
-	@apply w-8 
+  @apply flex 
 	h-8
-	rounded-full
-	bg-blue-100
-	text-blue-500
-	font-bold
-	flex
+	w-8
+	cursor-pointer
 	items-center
 	justify-center
+	rounded-full
 	border-2
 	border-white
+	bg-blue-100
 	text-xs
-	cursor-pointer
+	font-bold
+	text-blue-500
 	dark:border-slate-800
-	dark:text-blue-50
 	dark:bg-blue-500
+	dark:text-blue-50;
 }
 
 .assignee:not(:first-child) {
-	@apply -ml-3 
+  @apply -ml-3;
 }

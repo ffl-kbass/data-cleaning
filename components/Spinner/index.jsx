@@ -3,7 +3,7 @@ import styles from "./Spinner.module.css";
 const Spinner = () => {
   return (
     <div className={styles.container}>
-      <div className="p-2 rounded-full bg-white dark:bg-slate-900">
+      <div className="rounded-full bg-white p-2 dark:bg-slate-900">
         <svg
           aria-hidden="true"
           className={styles.spinner}

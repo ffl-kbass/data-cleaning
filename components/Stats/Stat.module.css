@@ -1,34 +1,37 @@
 .container {
-    @apply h-full 
-    w-full 
-    flex 
-    flex-col 
-    flex-nowrap 
-    /* bg-gradient-to-b
-    from-blue-100
-    to-transparent */
-    bg-white
-    border 
-    border-slate-300 
-    rounded-md 
-    p-3
-    dark:bg-slate-800
-    dark:border-slate-700
-    dark:text-slate-50
+  @apply flex 
+  h-full 
+  w-full 
+  flex-col flex-nowrap
+  rounded-md
+  border border-slate-300
+  bg-white
+  p-3
+  dark:border-slate-700
+  dark:bg-slate-800
+  dark:text-slate-50;
 }
 
 .title {
-    @apply w-full pb-2
+  @apply w-full 
+  pb-2;
 }
 
 .title h4 {
-    @apply font-bold text-slate-900 text-xs truncate dark:text-slate-50
+  @apply truncate 
+  text-xs 
+  font-bold 
+  text-slate-900 
+  dark:text-slate-50;
 }
 
 .stats {
-    @apply w-full h-full flex items-center
+  @apply flex 
+  h-full 
+  w-full 
+  items-center;
 }
 
 .container * {
-    @apply truncate
+  @apply truncate;
 }

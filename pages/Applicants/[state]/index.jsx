@@ -93,8 +93,8 @@ const Applicants = () => {
   return (
     <div className="pl-16">
       <Title>{router.query.state}</Title>
-      <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div className="grid grid-rows-2 gap-2 h-full">
+      <div className="mb-8 grid w-full max-w-7xl grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid h-full grid-rows-2 gap-2">
           <Stats title="Assigned">
             <div className="flex flex-row flex-nowrap items-center gap-2">
               <Assignees
@@ -123,19 +123,19 @@ const Applicants = () => {
           </Stats>
         </div>
         <Stats title="Cleanliness">
-          <div className="w-full h-full flex items-center justify-center">
-            <div className="h-20 w-full rounded-full border-8 border-green-500 flex items-center justify-center flex-col">
-              <p className="font-bold text-xl">100%</p>
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="flex h-20 w-full flex-col items-center justify-center rounded-full border-8 border-green-500">
+              <p className="text-xl font-bold">100%</p>
               <p className="text-xs">Clean</p>
             </div>
           </div>
         </Stats>
         <Stats title="Issues">
-          <div className="flex-1 flex flex-col gap-2 h-full">
-            <p className="font-bold text-lg flex-1 flex items-center px-4 rounded-md bg-red-500 text-white">
+          <div className="flex h-full flex-1 flex-col gap-2">
+            <p className="flex flex-1 items-center rounded-md bg-red-500 px-4 text-lg font-bold text-white">
               200 DQIs Remaining
             </p>
-            <p className="font-bold text-lg flex-1 flex items-center px-4 rounded-md bg-red-500 text-white">
+            <p className="flex flex-1 items-center rounded-md bg-red-500 px-4 text-lg font-bold text-white">
               200 Outliers Remaining
             </p>
           </div>

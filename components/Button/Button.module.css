@@ -1,16 +1,18 @@
 .button {
-    @apply px-2 
+  @apply flex 
     h-10
+    flex-row
+    items-center
+    gap-2
     rounded-md
     bg-transparent
-    text-slate-600
-    font-semibold
+    px-2 font-semibold text-slate-600
     transition-all
-    flex flex-row gap-2
-    items-center
-    dark:text-slate-300
+    dark:text-slate-300;
 }
 
 .button:hover {
-    @apply bg-blue-300/10 text-blue-500 dark:text-blue-50
+  @apply bg-blue-300/10 
+  text-blue-500 
+  dark:text-blue-50;
 }

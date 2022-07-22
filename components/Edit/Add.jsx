@@ -11,9 +11,9 @@ const Add = () => {
     <motion.div
       initial={{ opacity: 0, height: "1rem" }}
       animate={{ opacity: 1, height: "auto" }}
-      className="z-40 fixed overflow-hidden h-64 max-w-3xl min-w-[24rem] bottom-52 p-2 rounded-md bg-slate-800 border border-slate-700 text-white"
+      className="fixed bottom-52 z-40 h-64 min-w-[24rem] max-w-3xl overflow-hidden rounded-md border border-slate-700 bg-slate-800 p-2 text-white"
     >
-      <div className="flex flex-col gap-4 w-full flex-wrap">
+      <div className="flex w-full flex-col flex-wrap gap-4">
         <label className={styles.input_container}>
           <p className={styles.title}>Purpose</p>
           <input type="text" />
@@ -51,7 +51,7 @@ const Add = () => {
           <input type="text" />
         </label>
         <button
-          className="w-full h-10 rounded-md bg-blue-500 text-white font-semibold text-center hover:bg-blue-600"
+          className="h-10 w-full rounded-md bg-blue-500 text-center font-semibold text-white hover:bg-blue-600"
           onClick={() =>
             toastDispatch({
               type: ADD,

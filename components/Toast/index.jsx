@@ -42,7 +42,7 @@ const Toast = () => {
                 </svg>
               </span>
               <div className="flex flex-col">
-                <p className="font-semibold text-xs truncate w-full">
+                <p className="w-full truncate text-xs font-semibold">
                   {t.content.success}
                 </p>
                 <p className="w-full">{t.content.message}</p>

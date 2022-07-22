@@ -1,9 +1,9 @@
 .layout {
-	@apply h-screen
-	w-screen
-	flex
-	flex-row
-	overflow-hidden
+  @apply relative
 	z-20
-	relative
+	flex
+	h-screen
+	w-screen
+	flex-row
+	overflow-hidden;
 }

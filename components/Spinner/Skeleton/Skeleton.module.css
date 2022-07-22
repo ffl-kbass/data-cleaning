@@ -1,26 +1,29 @@
 .container {
-    @apply block flex-1 h-4 rounded-xl;
-    animation: skeleton-loading 1s linear infinite alternate;
+  @apply block 
+  h-4 
+  flex-1 
+  rounded-xl;
+  animation: skeleton-loading 1s linear infinite alternate;
 }
 
 .dark .container {
-    animation: skeleton-loading-dark 1s linear infinite alternate;
+  animation: skeleton-loading-dark 1s linear infinite alternate;
 }
 
 @keyframes skeleton-loading {
-    0% {
-      @apply bg-slate-300
-    }
-    100% {
-      @apply bg-slate-100
-    }
-} 
-  
+  0% {
+    @apply bg-slate-300;
+  }
+  100% {
+    @apply bg-slate-100;
+  }
+}
+
 @keyframes skeleton-loading-dark {
-    0% {
-      @apply bg-slate-700
-    }
-    100% {
-      @apply bg-slate-500
-    }
+  0% {
+    @apply bg-slate-700;
+  }
+  100% {
+    @apply bg-slate-500;
+  }
 }

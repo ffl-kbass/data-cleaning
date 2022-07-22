@@ -237,16 +237,16 @@ const ApplicantView = ({
   return (
     <div
       ref={app}
-      className={`w-full h-full flex-1 overflow-x-hidden overflow-y-auto p-4 rounded-md dark:text-slate-50 ${
-        primary && "bg-blue-300/10 border border-blue-500"
+      className={`h-full w-full flex-1 overflow-y-auto overflow-x-hidden rounded-md p-4 dark:text-slate-50 ${
+        primary && "border border-blue-500 bg-blue-300/10"
       }`}
     >
-      <div className="inline-flex flex-row items-center gap-1 mb-6">
+      <div className="mb-6 inline-flex flex-row items-center gap-1">
         {!primary ? (
           <Dropdown
             title={
               <>
-                <h4 className="text-xl font-bold text-left inline-flex flex-row gap-2 items-center justify-center">
+                <h4 className="inline-flex flex-row items-center justify-center gap-2 text-left text-xl font-bold">
                   {currentYear}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +270,7 @@ const ApplicantView = ({
               return (
                 <button
                   onClick={() => setYear(year)}
-                  className="p-2 rounded-md"
+                  className="rounded-md p-2"
                   key={index}
                 >
                   {year}
@@ -284,10 +284,10 @@ const ApplicantView = ({
       </div>
       <div className="flex flex-col gap-4">
         <div className="flex flex-row flex-wrap gap-4">
-          <Card className="flex-1 max-w-md min-w-[16rem]">
+          <Card className="min-w-[16rem] max-w-md flex-1">
             <Metrics loading={fetching} data={data} />
           </Card>
-          <Card className="flex-1 flex flex-col gap-2 max-w-md min-w-[16rem]">
+          <Card className="flex min-w-[16rem] max-w-md flex-1 flex-col gap-2">
             <DQI data={dqis} loading={dqi_fetching} />
           </Card>
         </div>
@@ -319,7 +319,7 @@ const ApplicantView = ({
                           {item.info.service_provider}
                         </p>
                       </li>
-                      <li className="p-2 rounded-md bg-slate-100 dark:text-white dark:bg-slate-900">
+                      <li className="rounded-md bg-slate-100 p-2 dark:bg-slate-900 dark:text-white">
                         <Expand>{item.info.narrative}</Expand>
                       </li>
                     </ul>
@@ -338,7 +338,7 @@ const ApplicantView = ({
                 );
               })
             ) : (
-              <div className="py-2 px-4 rounded-md text-sm bg-slate-100 dark:text-white dark:bg-slate-800">
+              <div className="rounded-md bg-slate-100 py-2 px-4 text-sm dark:bg-slate-800 dark:text-white">
                 No Services Found
               </div>
             )}
@@ -366,7 +366,7 @@ const ApplicantView = ({
                           {item.info.service_provider}
                         </p>
                       </li>
-                      <li className="p-2 rounded-md bg-slate-100 dark:text-white dark:bg-slate-800">
+                      <li className="rounded-md bg-slate-100 p-2 dark:bg-slate-800 dark:text-white">
                         {item.info.narrative}
                       </li>
                     </ul>
@@ -385,7 +385,7 @@ const ApplicantView = ({
                 );
               })
             ) : (
-              <div className="py-2 px-4 rounded-md text-sm bg-slate-100 dark:text-white dark:bg-slate-800">
+              <div className="rounded-md bg-slate-100 py-2 px-4 text-sm dark:bg-slate-800 dark:text-white">
                 No Services Found
               </div>
             )}
@@ -405,7 +405,7 @@ const ApplicantView = ({
                 <p className={metric_styles.label}>Service Provider</p>
                 <Skeleton />
               </li>
-              <li className="p-2 rounded-md bg-slate-100 dark:text-white dark:bg-slate-900">
+              <li className="rounded-md bg-slate-100 p-2 dark:bg-slate-900 dark:text-white">
                 <Skeleton />
               </li>
             </ul>

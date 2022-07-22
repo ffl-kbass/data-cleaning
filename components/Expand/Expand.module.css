@@ -1,23 +1,44 @@
 .container {
-    @apply w-full overflow-hidden relative rounded-md pb-6;
+  @apply relative 
+  w-full 
+  overflow-hidden 
+  rounded-md 
+  pb-6;
 }
 
 .closed {
-    @apply h-12
+  @apply h-12;
 }
 
 .open {
-    @apply h-auto
-}   
+  @apply h-auto;
+}
 
 .container.open .gradient {
-    @apply hidden
+  @apply hidden;
 }
 
 .gradient {
-    @apply absolute bottom-0 w-full h-4 bg-gradient-to-t from-slate-100 to-transparent
+  @apply absolute 
+  bottom-0 
+  h-4 
+  w-full 
+  bg-gradient-to-t 
+  from-slate-100 
+  to-transparent;
 }
 
 .more {
-    @apply absolute bottom-0 right-0 z-10 text-white bg-blue-500 py-1 px-2 rounded-full text-xs font-semibold cursor-pointer
+  @apply absolute 
+  bottom-0 
+  right-0 
+  z-10 
+  cursor-pointer 
+  rounded-full 
+  bg-blue-500 
+  py-1 
+  px-2 
+  text-xs 
+  font-semibold 
+  text-white;
 }
