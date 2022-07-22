@@ -1,9 +1,5 @@
-const Modal = ({children}) => {
-	return (
-		<div>
-			{children}
-		</div>
-	)
-}
+const Modal = ({ children }) => {
+  return <div>{children}</div>;
+};
 
-export default Modal
+export default Modal;

@@ -11,24 +11,25 @@
 
 /* width */
 ::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
+	width: 8px;
+	height: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-	@apply bg-slate-100
+	@apply bg-slate-100 dark:bg-slate-500
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-	@apply rounded-full bg-slate-400
+	@apply rounded-full bg-slate-300 dark:bg-slate-700
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-	@apply bg-slate-500 cursor-pointer
+	@apply bg-slate-500 cursor-pointer dark:bg-slate-900;
 }
+
 
 input[type="checkbox"] {
     @apply 

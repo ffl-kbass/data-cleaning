@@ -115,7 +115,7 @@ const States = () => {
 				{
 					key: data.states.sort[item],
 					desc: () => setSorting('DESC', item),
-					asc: () => setDirection('ASC', item),
+					asc: () => setSorting('ASC', item),
 				}
 			)
 		})
@@ -130,7 +130,6 @@ const States = () => {
 		setDirection(dir)
 		setColumn(col)
 	}
-
 
 	const head = ['State', 'Clean Districts', 'All Districts', 'Clean Percentage', 'Districts Meeting Goal', 'Assignees']
 

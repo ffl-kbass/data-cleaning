@@ -6,7 +6,7 @@
 	flex-col
 	bg-slate-50
 	border-r
-	border-slate-200
+	border-slate-300
 	p-4
 	flex-none
 	dark:bg-slate-900
@@ -60,7 +60,7 @@
 	text-slate-900
 	bg-white
 	border
-	border-slate-200
+	border-slate-300
 	rounded-md
 	dark:bg-slate-800
 	dark:text-slate-50
@@ -77,7 +77,7 @@
 }
 
 .modifiers {
-	@apply flex flex-row flex-wrap w-full p-2 mt-2 rounded-md bg-white border border-slate-200 dark:bg-slate-800 dark:border-slate-700
+	@apply flex flex-row flex-wrap w-full p-2 mt-2 rounded-md bg-white border border-slate-300 dark:bg-slate-800 dark:border-slate-700
 }
 
 .sidebar.small {

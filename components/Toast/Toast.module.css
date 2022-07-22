@@ -1,0 +1,31 @@
+.container {
+    @apply fixed top-0 right-0 max-h-full overflow-y-scroll overflow-x-hidden w-96 rounded-md p-2 z-50
+}
+
+.toasts {
+    @apply flex flex-col gap-2
+}
+
+.toast {
+    @apply bg-blue-500 text-white border border-white p-2 rounded-md relative overflow-hidden
+}
+
+.close {
+    @apply translate-x-full opacity-0 pointer-events-none cursor-pointer absolute right-2 top-2 flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white
+}
+
+.toast:hover .close {
+    @apply opacity-100 pointer-events-auto translate-x-0
+}
+
+.success {
+    @apply bg-green-500
+}
+
+.warning {
+    @apply bg-yellow-500
+}
+
+.emergency {
+    @apply bg-red-500
+}

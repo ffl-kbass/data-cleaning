@@ -1,5 +1,5 @@
 .dropdown {
-	@apply w-auto h-auto p-2 bg-white border border-slate-200 rounded-md absolute translate-x-0 translate-y-2 z-40 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-50
+	@apply w-auto h-auto p-2 bg-white border border-slate-300 rounded-md absolute translate-x-0 translate-y-2 z-40 dark:bg-slate-900 dark:border-slate-700 dark:text-slate-50
 }
 
 .list {

@@ -1,12 +1,7 @@
-import styles from "./Content.module.css"
+import styles from "./Content.module.css";
 
-const Content = ({ children }) =>
-{
-	return (
-		<div className={styles.content}>
-			{children}
-		</div>
-	)
-}
+const Content = ({ children }) => {
+  return <div className={styles.content}>{children}</div>;
+};
 
-export default Content
+export default Content;
